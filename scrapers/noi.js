@@ -5,7 +5,7 @@ const Medicine = require('../collections/medicine.js')
 let date = new Date()
 let x = xray().delay(1000)
 let medList = []
-let counter = 1
+let counter = 0
 
 exports.scraper = function () {
     x(
@@ -26,7 +26,7 @@ exports.scraper = function () {
         } else {
             data.forEach(function(result) {
                 let med = new Medicine(
-                    decodeURI(result.name),
+                    result.name,
                     result.price,
                     result.link,
                     "Medicine",
@@ -51,6 +51,3 @@ exports.scraper = function () {
         }
     })
 }
-
-
-
