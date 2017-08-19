@@ -1,0 +1,850 @@
+[
+  {
+    "name": "“ACONDICIONADOR SKIN DRAG VITAMINA E  Y ESENCIA DE MIEL”",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/acondicionador-skin-drag-vitamina-e-y-esencia-de-miel/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/ACONDICIONADOR-SKIN-DRAG-VITAMINA-E-300x300.jpg"
+  },
+  {
+    "name": "ACONDICIONADOR SIR DOG",
+    "price": "$4.990",
+    "link": "http://daymascotas.cl/producto/acondicionador-sir-dog/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/ACONDICIONADOR-SIR-DOG-300x300.jpg"
+  },
+  {
+    "name": "Advantage gato hasta  8kg",
+    "price": "$7.990",
+    "link": "http://daymascotas.cl/producto/advantix-25-a-40-kg/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2017/03/oferta-pipeta-advantage-gato-de-4-a-8kg-D_NQ_NP_644711-MLA20611994073_032016-F-300x300.jpg"
+  },
+  {
+    "name": "Advantix 10 a 25kg",
+    "price": "$7.990",
+    "link": "http://daymascotas.cl/producto/advantix-hasta-10kg/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2017/03/productos_gamma3-188x300.png"
+  },
+  {
+    "name": "Advantix 25 a 40 kg",
+    "price": "$9.990",
+    "link": "http://daymascotas.cl/producto/advantix-25-a-40-kg-2/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2017/03/productos_gamma4-188x300.png"
+  },
+  {
+    "name": "Advantix hasta 10 kg",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/advantix-hasta-10-kg/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2017/03/productos_gamma2-188x300.png"
+  },
+  {
+    "name": "Advantix hasta 4 kg",
+    "price": "$5.590",
+    "link": "http://daymascotas.cl/producto/advantix-hasta-4-kg/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2017/03/advantix-cane-fino-a-04kgpromo-bayer-300x300.jpg"
+  },
+  {
+    "name": "APETICAT. JARABE",
+    "price": "$7.990",
+    "link": "http://daymascotas.cl/producto/apeticat-jarabe/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/APETICAT.-JARABE-300x300.jpg"
+  },
+  {
+    "name": "APETIPET",
+    "price": "$8.990",
+    "link": "http://daymascotas.cl/producto/apetipet/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/APETIPET-300x300.jpg"
+  },
+  {
+    "name": "ARTRIOFIN 88MG COMPRIMIDO",
+    "price": "$9.990",
+    "link": "http://daymascotas.cl/producto/artriofin-88mg-comprimido/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/ARTRIOFIN-88MG-COMPRIMIDO-300x300.jpg"
+  },
+  {
+    "name": "BIOPOWER. POLVO ORAL",
+    "price": "$6.990",
+    "link": "http://daymascotas.cl/producto/biopower-polvo-oral/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/BIOPOWER.-POLVO-ORAL-300x300.jpg"
+  },
+  {
+    "name": "Bravecto 10 a 20kg",
+    "price": "$32.990",
+    "link": "http://daymascotas.cl/producto/bravecto-10-a-20kg/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/12/or_bravecto_5__mg-300x300.jpg"
+  },
+  {
+    "name": "Bravecto 2 a 4,5 kg",
+    "price": "$26.990",
+    "link": "http://daymascotas.cl/producto/bravecto-2-a-45-kg/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/12/bravecto-h-45-kg-1-300x300.jpg"
+  },
+  {
+    "name": "Bravecto 20 a 40kg",
+    "price": "$41.990",
+    "link": "http://daymascotas.cl/producto/bravecto-20-a-40kg/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/12/Anti-Pulgas-e-Carrapatos-Msd-Bravecto-para-Caes-de-45-a-10kg-200-Mg__19914_zoom-300x300.jpg"
+  },
+  {
+    "name": "Bravecto 4,5 a 10kg",
+    "price": "$27.990",
+    "link": "http://daymascotas.cl/producto/bravecto-45-a-10kg/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/12/942082015114349-300x300.jpg"
+  },
+  {
+    "name": "Bravecto 40 a 56kg",
+    "price": "$45.990",
+    "link": "http://daymascotas.cl/producto/bravecto-40-a-56kg/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/12/bravecto-1300mg-300x300.png"
+  },
+  {
+    "name": "CALCIDOG. COMPRIMIDOS",
+    "price": "$7.990",
+    "link": "http://daymascotas.cl/producto/calcidog-comprimidos/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/CALCIDOG.-COMPRIMIDOS-300x300.jpg"
+  },
+  {
+    "name": "CALMEDRAG. COMPRIMIDOS",
+    "price": "$9.990",
+    "link": "http://daymascotas.cl/producto/calmedrag-comprimidos/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/CALMEDRAG.-COMPRIMIDOS-300x300.jpg"
+  },
+  {
+    "name": "CAN OUT SPRAY",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/can-out-spray/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/CAN-OUT-SPRAY-300x300.jpg"
+  },
+  {
+    "name": "CLINDABONE COMPRIMIDO",
+    "price": "$18.990",
+    "link": "http://daymascotas.cl/producto/clindabone-comprimido/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/CLINDABONE-COMPRIMIDO-300x300.jpg"
+  },
+  {
+    "name": "COLLAR CATTI",
+    "price": "$4.990",
+    "link": "http://daymascotas.cl/producto/collar-catti/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/COLLAR-CATTI-300x300.jpg"
+  },
+  {
+    "name": "COLLAR ECO CAT",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/collar-eco-cat/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/COLLAR-ECO-CAT-300x300.jpg"
+  },
+  {
+    "name": "COLLAR ECO DOG",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/collar-eco-dog/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/COLLAR-ECO-DOG-300x300.jpg"
+  },
+  {
+    "name": "COLONIA ANIMAL HEALTH BLUE",
+    "price": "$3.990",
+    "link": "http://daymascotas.cl/producto/colonia-animal-health-blue/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/COLONIA-ANIMAL-HEALTH-BLUE-300x300.jpg"
+  },
+  {
+    "name": "COLONIA ANIMAL HEALTH PUPPY",
+    "price": "$3.990",
+    "link": "http://daymascotas.cl/producto/colonia-animal-health-puppy/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/COLONIA-ANIMAL-HEALTH-PUPPY-300x300.jpg"
+  },
+  {
+    "name": "COLONIA ANIMAL HEALTH VIOLET",
+    "price": "$3.990",
+    "link": "http://daymascotas.cl/producto/colonia-animal-health-violet/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/COLONIA-ANIMAL-HEALTH-VIOLET-300x300.jpg"
+  },
+  {
+    "name": "CONDROVET COMPRIMIDO",
+    "price": "$15.990",
+    "link": "http://daymascotas.cl/producto/condrovet-comprimido/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/CONDROVET-COMPRIMIDO-300x300.jpg"
+  },
+  {
+    "name": "CRACUL COMPRIMIDO",
+    "price": "$7.990",
+    "link": "http://daymascotas.cl/producto/cracul-comprimido/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/CRACUL-COMPRIMIDO-300x300.jpg"
+  },
+  {
+    "name": "DERMISOLONA COMPRIMIDO",
+    "price": "$9.990",
+    "link": "http://daymascotas.cl/producto/dermisolona-comprimido/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/DERMISOLONA-SUSPENSION-300x300.jpg"
+  },
+  {
+    "name": "DERMISOLONA SUSPENSION",
+    "price": "$8.990",
+    "link": "http://daymascotas.cl/producto/dermisolona-suspension/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/DERMISOLONA-SUSPENSION2-300x300.jpg"
+  },
+  {
+    "name": "DIARREPAS SUSPENSION",
+    "price": "$8.990",
+    "link": "http://daymascotas.cl/producto/diarrepas-suspension/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/DIARREPAS-SUSPENSION-300x300.jpg"
+  },
+  {
+    "name": "DIPRAMIDA SUSPENSION",
+    "price": "$7.990",
+    "link": "http://daymascotas.cl/producto/dipramida-suspension/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/DIPRAMIDA-SUSPENSION-300x300.jpg"
+  },
+  {
+    "name": "DOGUI ORAL SPRAY",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/dogui-oral-spray/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/DOGUI-ORAL-SPRAY-300x300.jpg"
+  },
+  {
+    "name": "DOGUIVIT ADULTO COMPRIMIDO",
+    "price": "$4.990",
+    "link": "http://daymascotas.cl/producto/doguivit-adulto-comprimido/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/DOGUIVIT-ADULTO-COMPRIMIDO-300x300.jpg"
+  },
+  {
+    "name": "DOGUIVIT CACHORRO COMPRIMIDO",
+    "price": "$4.990",
+    "link": "http://daymascotas.cl/producto/doguivit-cachorro-comprimido/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/DOGUIVIT-CACHORRO-COMPRIMIDO-300x300.jpg"
+  },
+  {
+    "name": "DOGUIVIT SENIOR COMPRIMIDO",
+    "price": "$4.990",
+    "link": "http://daymascotas.cl/producto/doguivit-senior-comprimido/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/DOGUIVIT-SENIOR-COMPRIMIDO-300x300.jpg"
+  },
+  {
+    "name": "DOXIMICIN 100 MG. COMPRIMIDO",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/doximicin-100-mg-comprimido/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/DOXIMICIN-100-MG.-COMPRIMIDO-300x300.jpg"
+  },
+  {
+    "name": "DOXIMICIN SOLUCION ORAL",
+    "price": "$6.990",
+    "link": "http://daymascotas.cl/producto/doximicin-solucion-oral/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/DOXIMICIN-SOLUCION-ORAL-300x300.jpg"
+  },
+  {
+    "name": "DRAGOVIN SOLUCION OTICA",
+    "price": "$7.990",
+    "link": "http://daymascotas.cl/producto/dragovin-solucion-otica/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/DRAGOVIN-SOLUCION-OTICA-300x300.jpg"
+  },
+  {
+    "name": "DRAGOXILO 220 MG COMPRIMDO",
+    "price": "$8.990",
+    "link": "http://daymascotas.cl/producto/dragoxilo-220-mg-comprimdo/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/DRAGOXILO-220-MG-COMPRIMDO-300x300.jpg"
+  },
+  {
+    "name": "DRAGOXILO 660 MG COMPRIMIDO",
+    "price": "$9.990",
+    "link": "http://daymascotas.cl/producto/dragoxilo-660-mg-comprimido/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/DRAGOXILO-660-MG-COMPRIMIDO-300x300.jpg"
+  },
+  {
+    "name": "DRAGXICILINA SUSPENSION ORAL",
+    "price": "$3.990",
+    "link": "http://daymascotas.cl/producto/dragxicilina-suspension-oral/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/DRAGXICILINA-SUSPENSION-ORAL-300x300.jpg"
+  },
+  {
+    "name": "Feliway carga 48ml",
+    "price": "$18.990",
+    "link": "http://daymascotas.cl/producto/feliway-carga-48ml/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/12/descarga.jpe"
+  },
+  {
+    "name": "Feliway spray 60ml",
+    "price": "$17.990",
+    "link": "http://daymascotas.cl/producto/feliway-spray-60ml/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/12/feliway-spray-300x300.jpg"
+  },
+  {
+    "name": "Feliway spray difusor+carga",
+    "price": "$34.990",
+    "link": "http://daymascotas.cl/producto/feliway-spray-difusorcarga/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/12/feliway-difusor-daymascotas.jpe"
+  },
+  {
+    "name": "FIPROKILL SPRAY  250 ML",
+    "price": "$15.990",
+    "link": "http://daymascotas.cl/producto/fiprokill-spray-50100-y-250-ml/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/FIPROKILL-SPRAY-50-100-Y-250-ML-300x300.jpg"
+  },
+  {
+    "name": "GASTROENTERIL SUSPENSION ORAL",
+    "price": "$8.990",
+    "link": "http://daymascotas.cl/producto/gastroenteril-suspension-oral/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/GASTROENTERIL-SUSPENSION-ORAL-300x300.jpg"
+  },
+  {
+    "name": "HASYUN COMPRIMIDOS",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/hasyun-comprimidos/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/HASYUN-COMPRIMIDOS-300x300.jpg"
+  },
+  {
+    "name": "HEPROTEC JARABE",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/heprotec-jarabe/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/HEPROTEC-JARABE-300x300.jpg"
+  },
+  {
+    "name": "HERPLEX L. SUSPENSION ORAL",
+    "price": "$7.990",
+    "link": "http://daymascotas.cl/producto/herplex-l-suspension-oral/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/HERPLEX-L.-SUSPENSION-ORAL-300x300.jpg"
+  },
+  {
+    "name": "INMUNOPET SUSPENSION ORAL",
+    "price": "$7.990",
+    "link": "http://daymascotas.cl/producto/inmunopet-suspension-oral/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/INMUNOPET-SUSPENSION-ORAL-300x300.jpg"
+  },
+  {
+    "name": "INVEADE SOLUCION ORAL",
+    "price": "$4.990",
+    "link": "http://daymascotas.cl/producto/inveade-solucion-oral/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/INVEADE-SOLUCION-ORAL-300x300.jpg"
+  },
+  {
+    "name": "ITRASKIN SUSPENSION ORAL",
+    "price": "$13.990",
+    "link": "http://daymascotas.cl/producto/itraskin-suspension-oral/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/ITRASKIN-SUSPENSION-ORAL-300x300.jpg"
+  },
+  {
+    "name": "LAGRIPET  SACA MANCHAS DEL OJO",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/lagripet-solucion-externa/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/LAGRIPET.-SOLUCION-EXTERNA-300x300.jpg"
+  },
+  {
+    "name": "LAX DRAG. PASTA ORAL",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/lax-drag-pasta-oral/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/LAX-DRAG.-PASTA-ORAL-300x300.jpg"
+  },
+  {
+    "name": "MAMISTOP GATO 100 GR. POLVO ORAL",
+    "price": "$4.990",
+    "link": "http://daymascotas.cl/producto/mamistop-gato-100-gr-polvo-oral/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/MAMISTOP-GATO-100-GR.-POLVO-ORAL-300x300.jpg"
+  },
+  {
+    "name": "MamiStop Leche Gato 100grs",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/superpet-omega-36-gato/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SUPERPET-OMEGA-3-6-GATO-300x300.jpg"
+  },
+  {
+    "name": "MIXANTIP PLUS. CREMA",
+    "price": "$9.990",
+    "link": "http://daymascotas.cl/producto/mixantip-plus-crema/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/MIXANTIP-PLUS.-CREMA-300x300.jpg"
+  },
+  {
+    "name": "NANORMEN. SUSPENSION ORAL",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/nanormen-suspension-oral/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/NANORMEN.-SUSPENSION-ORAL-300x300.jpg"
+  },
+  {
+    "name": "NAXPET 0.4%. SUSPENSION ORAL",
+    "price": "$8.990",
+    "link": "http://daymascotas.cl/producto/naxpet-0-4-suspension-oral/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/NAXPET-0.4.-SUSPENSION-ORAL-300x300.jpg"
+  },
+  {
+    "name": "NAXPET 150 MG RAZA GRANDE. COMPRIMIDO ORAL",
+    "price": "$8.990",
+    "link": "http://daymascotas.cl/producto/naxpet-150-mg-raza-grande-comprimido-oral/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/NAXPET-150-MG-RAZA-GRANDE.-COMPRIMIDO-ORAL-300x300.jpg"
+  },
+  {
+    "name": "OFTAVET. SOLUCION OFTALMICA",
+    "price": "$10.990",
+    "link": "http://daymascotas.cl/producto/oftavet-solucion-oftalmica/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/OFTAVET.-SOLUCION-OFTALMICA-300x300.jpg"
+  },
+  {
+    "name": "PACIFOR GOTAS",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/pacifor-gotas/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/PACIFOR.-GOTAS-300x300.jpg"
+  },
+  {
+    "name": "PACIFOR. COMPRIMIDOS",
+    "price": "$6.990",
+    "link": "http://daymascotas.cl/producto/pacifor-comprimidos/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/PACIFOR.-COMPRIMIDOS-300x300.jpg"
+  },
+  {
+    "name": "PAZ PET",
+    "price": "$6.990",
+    "link": "http://daymascotas.cl/producto/paz-pet/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/PAZ-PET-300x300.jpg"
+  },
+  {
+    "name": "PERFUME SIR DOG LADY",
+    "price": "$6.990",
+    "link": "http://daymascotas.cl/producto/perfume-sir-dog-lady/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/PERFUME-SIR-DOG-LADY-300x300.jpg"
+  },
+  {
+    "name": "PERFUME SIR DOG MUSK",
+    "price": "$6.990",
+    "link": "http://daymascotas.cl/producto/perfume-sir-dog-musk/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/PERFUME-SIR-DOG-MUSK-300x300.jpg"
+  },
+  {
+    "name": "PET OTIC. SOLUCION OTICA",
+    "price": "$6.990",
+    "link": "http://daymascotas.cl/producto/pet-otic-solucion-otica/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/PET-OTIC.-SOLUCION-OTICA-300x300.jpg"
+  },
+  {
+    "name": "PET OUT. SPRAY",
+    "price": "$6.990",
+    "link": "http://daymascotas.cl/producto/pet-out-spray/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/PET-OUT.-SPRAY-300x300.jpg"
+  },
+  {
+    "name": "PETEVER PLUS. SOLUCION ORAL",
+    "price": "$6.990",
+    "link": "http://daymascotas.cl/producto/petever-plus-solucion-oral/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/PETEVER-PLUS.-SOLUCION-ORAL-300x300.jpg"
+  },
+  {
+    "name": "PICHICHI",
+    "price": "$1.990",
+    "link": "http://daymascotas.cl/producto/pichichi/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/PICHICHI-300x300.jpg"
+  },
+  {
+    "name": "QUIT OLOR. SPRAY",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/quit-olor-spray/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/QUIT-OLOR.-SPRAY-300x300.jpg"
+  },
+  {
+    "name": "RESPIG",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/respig/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/RESPIG-300x300.jpg"
+  },
+  {
+    "name": "Revolution gato",
+    "price": "$12.990",
+    "link": "http://daymascotas.cl/producto/revolution-gato/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2017/08/DAYMASCOTAS-REVOLUTION-GATO-1-300x300.jpg"
+  },
+  {
+    "name": "ROSTRUM 150 MG. COMPRIMIDO ORAL",
+    "price": "$9.990",
+    "link": "http://daymascotas.cl/producto/rostrum-150-mg-comprimido-oral/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/ROSTRUM-150-MG.-COMPRIMIDO-ORAL-300x300.jpg"
+  },
+  {
+    "name": "ROSTRUM 2.5%. SUSPENSION ORAL",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/rostrum-2-5-suspension-oral/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/ROSTRUM-2.5.-SUSPENSION-ORAL-300x300.jpg"
+  },
+  {
+    "name": "ROSTRUM 50 MG. COMPRIMIDO ORAL",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/rostrum-50-mg-comprimido-oral/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/ROSTRUM-50-MG.-COMPRIMIDO-ORAL-300x300.jpg"
+  },
+  {
+    "name": "ROSTRUM PLUS OTICO.EMULSION OTICA",
+    "price": "$8.990",
+    "link": "http://daymascotas.cl/producto/rostrum-plus-otico-emulsion-otica/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/ROSTRUM-PLUS-OTICO.EMULSION-OTICA-300x300.jpg"
+  },
+  {
+    "name": "SHAMPOO ALERDRAG",
+    "price": "$8.990",
+    "link": "http://daymascotas.cl/producto/shampoo-alerdrag/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SHAMPOO-ALERDRAG-300x300.jpg"
+  },
+  {
+    "name": "SHAMPOO CITRUSPET",
+    "price": "$6.990",
+    "link": "http://daymascotas.cl/producto/shampoo-citruspet/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SHAMPOO-CITRUSPET.-300x300.jpg"
+  },
+  {
+    "name": "SHAMPOO DORAZEL PLUS",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/shampoo-dorazel-plus/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SHAMPOO-DORAZEL-PLUS-300x300.jpg"
+  },
+  {
+    "name": "SHAMPOO EXTRA BIRLLO CANISH",
+    "price": "$4.990",
+    "link": "http://daymascotas.cl/producto/shampoo-extra-birllo-canish/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SHAMPOO-EXTRA-BIRLLO-CANISH-300x300.jpg"
+  },
+  {
+    "name": "SHAMPOO FLT",
+    "price": "$7.990",
+    "link": "http://daymascotas.cl/producto/shampoo-flt/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SHAMPOO-FLT-300x300.jpg"
+  },
+  {
+    "name": "SHAMPOO HIPOALERGENICO CANISH",
+    "price": "$4.990",
+    "link": "http://daymascotas.cl/producto/shampoo-hipoalergenico-canish/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SHAMPOO-HIPOALERGENICO-CANISH-300x300.jpg"
+  },
+  {
+    "name": "SHAMPOO PETEVER FORTE",
+    "price": "$8.990",
+    "link": "http://daymascotas.cl/producto/shampoo-petever-forte/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SHAMPOO-PETEVER-FORTE-300x300.jpg"
+  },
+  {
+    "name": "SHAMPOO REGEPIPEL PLUS",
+    "price": "$8.990",
+    "link": "http://daymascotas.cl/producto/shampoo-regepipel-plus/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SHAMPOO-REGEPIPEL-PLUS-300x300.jpg"
+  },
+  {
+    "name": "SHAMPOO SINPUL",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/shampoo-sinpul/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SHAMPOO-SINPUL-300x300.jpg"
+  },
+  {
+    "name": "SHAMPOO SIR DOG BLACK",
+    "price": "$4.990",
+    "link": "http://daymascotas.cl/producto/shampoo-sir-dog-black/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SHAMPOO-SIR-DOG-BLACK-300x300.jpg"
+  },
+  {
+    "name": "SHAMPOO SIR DOG ODOR CONTROL",
+    "price": "$4.990",
+    "link": "http://daymascotas.cl/producto/shampoo-sir-dog-odor-control/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SHAMPOO-SIR-DOG-ODOR-CONTROL-300x300.jpg"
+  },
+  {
+    "name": "SHAMPOO SIR DOG PELAJE CAFE",
+    "price": "$4.990",
+    "link": "http://daymascotas.cl/producto/shampoo-sir-dog-pelaje-cafe/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SHAMPOO-SIR-DOG-PELAJE-CAFE-300x300.jpg"
+  },
+  {
+    "name": "SHAMPOO SKIN DRAG AVENA",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/shampoo-skin-drag-avena/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SHAMPOO-SKIN-DRAG-AVENA-300x300.jpg"
+  },
+  {
+    "name": "SHAMPOO SKIN DRAG CERAMIDAS",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/shampoo-skin-drag-ceramidas/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SHAMPOO-SKIN-DRAG-CERAMIDAS-300x300.jpg"
+  },
+  {
+    "name": "SHAMPOO SKIN DRAG TE VERDE Y CALENDULA",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/shampoo-skin-drag-te-verde-y-calendula/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SHAMPOO-SKIN-DRAG-TE-VERDE-Y-CALENDULA-300x300.jpg"
+  },
+  {
+    "name": "SHAMPOO SOR DOG WHITE",
+    "price": "$4.990",
+    "link": "http://daymascotas.cl/producto/shampoo-sor-dog-white/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SHAMPOO-SIR-DOG-WHITE-300x300.jpg"
+  },
+  {
+    "name": "SHAMPOO Y ACONDICIONADOR CANISH",
+    "price": "$4.990",
+    "link": "http://daymascotas.cl/producto/shampoo-y-acondicionador-canish/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SHAMPOO-Y-ACONDICIONADOR-CANISH-300x300.jpg"
+  },
+  {
+    "name": "SINPUL 30%. POLVO PARA DISPERSION 15 GR",
+    "price": "$3.990",
+    "link": "http://daymascotas.cl/producto/sinpul-30-polvo-para-dispersion-15-gr/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SINPUL-30.-POLVO-PARA-DISPERSION-15-GR-300x300.jpg"
+  },
+  {
+    "name": "SINPUL SPRAY 200 ML",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/sinpul-spray-200-ml/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SINPUL-SPRAY-200-ML-300x300.jpg"
+  },
+  {
+    "name": "SUAVIPET",
+    "price": "$5.990",
+    "link": "http://daymascotas.cl/producto/suavipet/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SUAVIPET-300x300.jpg"
+  },
+  {
+    "name": "SUPERPET OMEGA 3/6 PERRO ADULTO",
+    "price": "$4.990",
+    "link": "http://daymascotas.cl/producto/superpet-omega-36-perro-adulto/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/6-PERRO-ADULTO-300x300.jpg"
+  },
+  {
+    "name": "SUPERPET OMEGA 3/6 PUPPY",
+    "price": "$4.990",
+    "link": "http://daymascotas.cl/producto/superpet-omega-36-puppy/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SUPERPET-OMEGA-36-PUPPY-300x300.jpg"
+  },
+  {
+    "name": "SUPERPET OMEGA 3/6 SENIOR",
+    "price": "$4.990",
+    "link": "http://daymascotas.cl/producto/superpet-omega-36-senior/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SUPERPET-OMEGA-3-6-SENIOR-300x300.jpg"
+  },
+  {
+    "name": "SUPERPET POLVO ORAL 100 GR",
+    "price": "$6.990",
+    "link": "http://daymascotas.cl/producto/superpet-polvo-oral-100-gr/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/SUPERPET-POLVO-ORAL-100-GR-300x300.jpg"
+  },
+  {
+    "name": "TRANSIMED. SUSPENSION OTICA Y TOPICA",
+    "price": "$7.990",
+    "link": "http://daymascotas.cl/producto/transimed-suspension-otica-y-topica/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/TRANSIMED.-SUSPENSION-OTICA-Y-TOPICA-300x300.jpg"
+  },
+  {
+    "name": "ULTRAFIL PLUS",
+    "price": "$11.990",
+    "link": "http://daymascotas.cl/producto/ultrafil-plus/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/ULTRAFIL-PLUS-300x300.jpg"
+  },
+  {
+    "name": "ULTRAFIL SUSPENSION OTICA",
+    "price": "$9.990",
+    "link": "http://daymascotas.cl/producto/ultrafil-suspension-otica/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/ULTRAFIL-PLUS-300x300.jpg"
+  },
+  {
+    "name": "URSOVET. SUSPENSION ORAL",
+    "price": "$8.990",
+    "link": "http://daymascotas.cl/producto/ursovet-suspension-oral/",
+    "category": "Medicine",
+    "brand": "Brand",
+    "image": "http://daymascotas.cl/wp-content/uploads/2016/10/URSOVET.-SUSPENSION-ORAL-300x300.jpg"
+  }
+]

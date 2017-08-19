@@ -1,0 +1,16 @@
+{
+  "name": "xray",
+  "version": "1.0.0",
+  "description": "web scraping with nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "author": "jags",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^4.10.8",
+    "x-ray": "^2.3.2"
+  }
+}
