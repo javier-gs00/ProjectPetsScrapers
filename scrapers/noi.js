@@ -5,6 +5,7 @@ const Medicine = require('../collections/medicine.js')
 let date = new Date()
 let x = xray().delay(1000)
 let medList = []
+let counter = 1
 
 exports.scraper = function () {
     x(
@@ -33,7 +34,8 @@ exports.scraper = function () {
                     result.image,
                     "Noi"
                 )
-
+                
+                counter += 1
                 medList.push(med)
             })
 
@@ -42,6 +44,7 @@ exports.scraper = function () {
                     console.log("medsnoi: " + err)
                 } else {
                     console.log('medsnoi.json updated')
+                    console.log(counter + ' elements saved')
                     console.log('Noi scraper finished at: ' + date.getSeconds())
                 }
             })

@@ -1,7 +1,7 @@
 // const meddaymascotas = require('./scrapers/meddaymascotas.js');
 const noi = require('./scrapers/noi.js')
 const fs = require('fs')
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 
 // mongoose.connect('mongodb://localhost/projectpets')
 // const db = mongoose.connection
