@@ -1,26 +1,39 @@
-<div class="card-deck">
-  <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h4 class="card-title">Card title</h4>
-      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text">Last updated 3 mins ago</p>
+{{!-- <div class="card-deck">
+    <div class="card">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-body">
+        <h4 class="card-title">Producto</h4>
+        <p class="card-text">Tienda</p>
+        <p class="card-text">$9.999</p>
+      </div>
     </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h4 class="card-title">Card title</h4>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-      <p class="card-text">Last updated 3 mins ago</p>
+    <div class="card">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-body">
+        <h4 class="card-title">Producto</h4>
+        <p class="card-text">Tienda</p>
+        <p class="card-text">$9.999</p>
+      </div>
     </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h4 class="card-title">Card title</h4>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-      <p class="card-text">Last updated 3 mins ago</p>
+    <div class="card">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-body">
+        <h4 class="card-title">Producto</h4>
+        <p class="card-text">Tienda</p>
+        <p class="card-text">$9.999</p>
+      </div>
     </div>
-  </div>
+</div> --}}
+
+<div class="card-columns">
+  {{#each product}}
+    <div class="card">
+      <img class="card-img-top" src="{{this.image_href}}" alt="Card image cap">
+      <div class="card-body">
+        <h4 class="card-title">{{this.name}}</h4>
+        <p class="card-text">{{this.store}}</p>
+        <p class="card-text">{{this.price}}</p>
+      </div>
+    </div>
+  {{/each}}
 </div>

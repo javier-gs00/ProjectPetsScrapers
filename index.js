@@ -9,9 +9,21 @@ const mongoose = require('mongoose')
 const app = express()
 const router = express.Router()
 const path = __dirname + '/'
-// mongoose.connect('mongodb://localhost/projectpets')
-// const db = mongoose.connection
-// db.on('error', console.error.bind(console, 'connection error:'))
+mongoose.connect('mongodb://localhost/projectpets')
+const db = mongoose.connection
+db.on('error', console.error.bind(console, 'connection error:'))
+
+let medSchema = mongoose.Schema({
+    name: String,
+    price: String,
+    href: String,
+    category: String,
+    brand: String,
+    image_href: String,
+    store: String,
+})
+
+let Meds = mongoose.model('meds', medSchema)
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
@@ -20,12 +32,24 @@ app.get('/', function (req, res) {
     res.render('home')
 })
 
+app.post('/', function (req, res) {
+    res.render('home')
+})
+
 app.get('/alimentos', function (req, res) {
     res.render('alimentos')
 })
 
 app.get('/medicamentos', function (req, res) {
-    res.render('medicamentos')
+    Meds.find().exec(function (err, medicamentos) {
+        res.render('medicamentos', {
+            product: medicamentos
+            // image_link: medicamentos.image_href,
+            // product_name: medicamentos.name,
+            // store_name: medicamentos.store,
+            // product_price: medicamentos.price
+        })
+    })
 })
 
 app.get('/servicios', function (req, res) {
