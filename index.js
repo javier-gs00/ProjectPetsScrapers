@@ -20,6 +20,17 @@ app.get('/', function (req, res) {
     res.render('home')
 })
 
+app.get('/alimentos', function (req, res) {
+    res.render('alimentos')
+})
+
+app.get('/medicamentos', function (req, res) {
+    res.render('medicamentos')
+})
+
+app.get('/servicios', function (req, res) {
+    res.render('servicios')
+})
 // savecollection.save('medsnoi.json')
 
 // let date = new Date()
