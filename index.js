@@ -23,6 +23,10 @@ let medSchema = mongoose.Schema({
     store: String,
 })
 
+medSchema.statics.findByName = function (name, callback) {
+    return this.find({name: new RegExp(name, 'i')}, callback)
+}
+
 let Meds = mongoose.model('meds', medSchema)
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
@@ -32,8 +36,10 @@ app.get('/', function (req, res) {
     res.render('home')
 })
 
-app.post('/', function (req, res) {
-    res.render('home')
+app.get('/search', function (req, res) {
+    Meds.findByName(req.query.query, function (err, meds) {
+        res.render('home', {med: meds})
+    })
 })
 
 app.get('/alimentos', function (req, res) {
@@ -44,10 +50,6 @@ app.get('/medicamentos', function (req, res) {
     Meds.find().exec(function (err, medicamentos) {
         res.render('medicamentos', {
             product: medicamentos
-            // image_link: medicamentos.image_href,
-            // product_name: medicamentos.name,
-            // store_name: medicamentos.store,
-            // product_price: medicamentos.price
         })
     })
 })
