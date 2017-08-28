@@ -19,7 +19,7 @@ exports.save = function (filename) {
         store: String,
     })
 
-    // Compile medicine Schema into a Model (name between single quotes is the name of the collection in mongodb)
+    // Create a Mongoose model from the Schema (name between single quotes is the name of the collection in mongodb)
     let MedicineModel = mongoose.model('Med', medSchema)
 
     // Read JSON file

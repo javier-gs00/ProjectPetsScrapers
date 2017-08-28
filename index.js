@@ -1,10 +1,12 @@
-// const meddaymascotas = require('./scrapers/meddaymascotas.js');
-// const noi = require('./scrapers/noi.js')
+// import modules
 const express = require('express')
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const fs = require('fs')
 const mongoose = require('mongoose')
+// import web scrapers
+// const meddaymascotas = require('./scrapers/meddaymascotas.js');
+// const noi = require('./scrapers/noi.js')
 // const savecollection = require('./collections/savecollection.js')
 
 const app = express()
@@ -47,20 +49,24 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 
+// Main/Landing page
 app.get('/', function (req, res) {
     res.render('home')
 })
 
+// (READ) Search form route and return data
 app.get('/search', function (req, res) {
     Meds.findByName(req.query.query, function (err, meds) {
         res.render('home', {med: meds})
     })
 })
 
+// READ and show all food data
 app.get('/alimentos', function (req, res) {
     res.render('alimentos')
 })
 
+// READ and show all medicine data
 app.get('/medicamentos', function (req, res) {
     Meds.find().exec(function (err, medicamentos) {
         res.render('medicamentos', {
@@ -69,10 +75,12 @@ app.get('/medicamentos', function (req, res) {
     })
 })
 
+// READ and show all services data
 app.get('/servicios', function (req, res) {
     res.render('servicios')
 })
 
+// READ and show all stores data
 app.get('/tiendas', function (req, res) {
     Stores.find().exec(function (err, tiendas) {
         console.log(tiendas)
@@ -82,14 +90,17 @@ app.get('/tiendas', function (req, res) {
     })
 })
 
+// READ and show a particular store data
 app.get('/tiendas/:name', function (req, res) {
     res.render('tiendas')
 })
 
+// Form for adding a new store
 app.get('/gestiontiendas', function (req, res) {
     res.render('gestiontiendas')
 })
 
+// CREATE a new store 
 app.post('/guardartienda', function (req, res) {
     let newStore = new Stores ({
         name: req.body.store_name,
@@ -112,7 +123,7 @@ app.post('/guardartienda', function (req, res) {
     })
 })
 
- // savecollection.save('medsnoi.json')
+// savecollection.save('medsnoi.json')
 
 // let date = new Date()
 // console.log('Process started at: ' + date.getSeconds())
