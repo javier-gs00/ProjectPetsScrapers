@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nombre</th>
+      <th>Dirección</th>
+      <th>Tienda online</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each store}}
+    <tr>
+      <th scope="row">1</th>
+      <td><a href="https://{{this.website}}">{{this.name}}</a></td>
+      <td>{{this.address.[0]}}</td>
+      <td>{{this.phone.[0]}}</td>
+    </tr>
+    {{/each}}
+   <tbody>
+</table>
