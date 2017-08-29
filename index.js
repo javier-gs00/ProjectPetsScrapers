@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const fs = require('fs')
 const mongoose = require('mongoose')
+const methodOverride = require('method-override')
 // import web scrapers
 // const meddaymascotas = require('./scrapers/meddaymascotas.js');
 // const noi = require('./scrapers/noi.js')
@@ -46,6 +47,7 @@ let Meds = mongoose.model('meds', medSchema)
 let Stores = mongoose.model('stores', storeSchema)
 
 app.use(bodyParser.urlencoded({extended: true}))
+app.use(methodOverride('_method'))
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 
@@ -83,7 +85,6 @@ app.get('/servicios', function (req, res) {
 // READ and show all stores data
 app.get('/tiendas', function (req, res) {
     Stores.find().exec(function (err, tiendas) {
-        console.log(tiendas)
         res.render('tiendas', {
             store: tiendas
         })
@@ -95,13 +96,22 @@ app.get('/tiendas/:name', function (req, res) {
     res.render('tiendas')
 })
 
-// Form for adding a new store
+// READ and show all stores data for managing porpuses
 app.get('/gestiontiendas', function (req, res) {
-    res.render('gestiontiendas')
+    Stores.find().exec(function (err, tiendas) {
+        res.render('tiendas_gestion', {
+            store: tiendas
+        })
+    })
+})
+
+// Form for adding a new store
+app.get('/gestiontiendas/nuevatienda', function (req, res) {
+    res.render('tiendas_nueva')
 })
 
 // CREATE a new store 
-app.post('/guardartienda', function (req, res) {
+app.post('/agregartienda', function (req, res) {
     let newStore = new Stores ({
         name: req.body.store_name,
         website: req.body.website,
@@ -118,9 +128,28 @@ app.post('/guardartienda', function (req, res) {
         if (err) {
             console.log(err)
         } else {
-            res.redirect('/')
+            res.redirect('/gestiontiendas')
         }
     })
+})
+
+//UPDATE or edit a store
+app.get('/gestiontiendas/edit/:id', function (req, res) {
+    Stores.findById(req.params.id).exec(function (err, store) {
+        res.render('tiendas_editar', {store: store})
+    })
+})
+
+app.put('/editartienda/:id', function (req, res) {
+    Stores.findByIdAndUpdate(req.params.id, req.body, function (err, store) {
+        console.log(req.body)
+        res.redirect('/gestiontiendas')
+    })
+})
+
+// Manage web scrapers
+app.get('/scrapers', function (req, res) {
+    res.render('scrapers')
 })
 
 // savecollection.save('medsnoi.json')

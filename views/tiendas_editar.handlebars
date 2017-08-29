@@ -1,0 +1,7 @@
+<h2>Editar tienda: {{store.name}}</h2>
+<br />
+<div class="container">
+    <form method="POST" action="/editartienda/{{store._id}}?_method=PUT">
+        {{> storeform}}
+    </form>
+</div>
