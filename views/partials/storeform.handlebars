@@ -1,7 +1,13 @@
     <div class="form-group row">
-      <label for="store_name" class="col-sm-2 col-form-label">Nombre</label>
+      <label for="store_name" class="col-sm-2 col-form-label">Nombre Empresa/Marca</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" name="store_name" value="{{store.name}}" placeholder="Nombre">
+        <input type="text" class="form-control" name="brand_name" value="{{store.brand_name}}" placeholder="Nombre">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="store_name" class="col-sm-2 col-form-label">Nombre del Local</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="location_name" value="{{store.location_name}}" placeholder="Nombre">
       </div>
     </div>
     <div class="form-group row">
@@ -11,57 +17,75 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="address" class="col-sm-2 col-form-label">Dirección</label>
+      <label for="address" class="col-sm-2 col-form-label">Calle</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" name="address" value="{{store.address}}" placeholder="Calle #, Comuna, Ciudad">
+        <input type="text" class="form-control" name="address_street" value="{{store.address_street}}" placeholder="Calle #, Comuna, Ciudad">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="address" class="col-sm-2 col-form-label">Comuna</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="address_commune" value="{{store.address_commune}}" placeholder="Calle #, Comuna, Ciudad">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="address" class="col-sm-2 col-form-label">Región</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="address_region" value="{{store.address_region}}" placeholder="Calle #, Comuna, Ciudad">
       </div>
     </div>
     <div class="form-group row">
       <label for="phone" class="col-sm-2 col-form-label">Teléfono</label>
       <div class="col-sm-10">
-        <input type="number" class="form-control" name="phone" value="{{store.phone}}" placeholder="Ej: 123456789">
+        <input type="number" class="form-control" name="phone1" value="{{store.phone1}}" placeholder="Ej: 123456789">
       </div>
     </div>
     <div class="form-group row">
-      <label for="email" class="col-sm-2 col-form-label">Email</label>
+      <label for="phone" class="col-sm-2 col-form-label">2° Teléfono (opcional)</label>
       <div class="col-sm-10">
-        <input type="email" class="form-control" name="email" value="{{store.mail}}" placeholder="ejemplo@ejemplo.com">
+        <input type="number" class="form-control" name="phone2" value="{{store.phone2}}" placeholder="Ej: 123456789">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="email" class="col-sm-2 col-form-label">Email de contacto</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" name="email" value="{{store.email}}" placeholder="tienda@correo.com">
       </div>
     </div>
     <div class="form-group row">
       <div class="col-sm-2">¿Tienda de comida?</div>
       <div class="col-sm-10">
-        <div class="form-check">
-          <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" name="food_shop" value="{{store.food_shop}}">Si</label>
-        </div>
+        <select class="form-control" id="food_shop" name="food_shop">
+          <option>Si</option>
+          <option>No</option>
+        </select>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-sm-2">¿Tienda de remedios?</div>
       <div class="col-sm-10">
-        <div class="form-check">
-          <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" name="med_shop" value="{{store.med_shop}}">Si</label>
-        </div>
+        <select class="form-control" id="med_shop" name="med_shop">
+          <option>Si</option>
+          <option>No</option>
+        </select>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-sm-2">¿Realiza envios a domicilio?</div>
       <div class="col-sm-10">
-        <div class="form-check">
-          <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" name="shipping" value="{{store.shipping}}">Si</label>
-        </div>
+        <select class="form-control" id="shipping" name="shipping">
+          <option>Si</option>
+          <option>No</option>
+        </select>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-sm-2">¿Es clinica veterinaria?</div>
       <div class="col-sm-10">
-        <div class="form-check">
-          <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" name="clinic" value="{{store.clinic}}">Si</label>
-        </div>
+        <select class="form-control" id="clinic" name="clinic">
+          <option>Si</option>
+          <option>No</option>
+        </select>
       </div>
     </div>
     <div class="form-group row">
