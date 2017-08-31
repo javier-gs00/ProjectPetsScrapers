@@ -1,8 +1,8 @@
-function storeObject () {
-    
-}
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const ObjectId = Schema.ObjectId
 
-let storeSchema = mongoose.Schema({
+let StoreSchema = mongoose.Schema({
     brand_name: String,
     location_name: String,
     website: String,
@@ -18,7 +18,6 @@ let storeSchema = mongoose.Schema({
     clinic: String
 })
 
-let storeModel = mongoose.model('stores', storeSchema)
+StoreModel = mongoose.model('stores', StoreSchema)
 
-module.exports = storeSchema
-module.exports = storeModel
+module.exports.StoreModel = StoreModel

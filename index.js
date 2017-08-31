@@ -16,39 +16,9 @@ const path = __dirname + '/'
 mongoose.connect('mongodb://localhost/projectpets')
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
-
-let medSchema = mongoose.Schema({
-    name: String,
-    price: String,
-    href: String,
-    category: String,
-    brand: String,
-    image_href: String,
-    store: String,
-})
-
-let storeSchema = mongoose.Schema({
-    brand_name: String,
-    location_name: String,
-    website: String,
-    address_street: String,
-    address_commune: String,
-    address_region: String,
-    phone1: Number,
-    phone2: Number,
-    email: String,
-    food_shop: String,
-    med_shop: String,
-    shipping: String,
-    clinic: String
-})
-
-medSchema.statics.findByName = function (name, callback) {
-    return this.find({name: new RegExp(name, 'i')}, callback)
-}
-
-let Meds = mongoose.model('meds', medSchema)
-let Stores = mongoose.model('stores', storeSchema)
+// import DB Models
+const StoreModel = require('./dbmodels/store.js').StoreModel
+const MedModel = require('./dbmodels/medicine.js').MedModel
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
@@ -62,7 +32,7 @@ app.get('/', function (req, res) {
 
 // (READ) Search form route and return data
 app.get('/search', function (req, res) {
-    Meds.findByName(req.query.query, function (err, meds) {
+    MedModel.find({name: new RegExp(req.query.query, 'i')}, function (err, meds) {
         res.render('home', {med: meds})
     })
 })
@@ -74,7 +44,7 @@ app.get('/alimentos', function (req, res) {
 
 // READ and show all medicine data
 app.get('/medicamentos', function (req, res) {
-    Meds.find().exec(function (err, medicamentos) {
+    MedModel.find().exec(function (err, medicamentos) {
         res.render('medicamentos', {
             product: medicamentos
         })
@@ -88,7 +58,7 @@ app.get('/servicios', function (req, res) {
 
 // READ and show all stores data
 app.get('/tiendas', function (req, res) {
-    Stores.find().exec(function (err, tiendas) {
+    StoreModel.find().exec(function (err, tiendas) {
         res.render('tiendas', {
             store: tiendas
         })
@@ -102,7 +72,7 @@ app.get('/tiendas/:name', function (req, res) {
 
 // READ and show all stores data for managing porpuses
 app.get('/gestiontiendas', function (req, res) {
-    Stores.find().exec(function (err, tiendas) {
+    StoreModel.find().exec(function (err, tiendas) {
         res.render('tiendas_gestion', {
             store: tiendas
         })
@@ -116,7 +86,7 @@ app.get('/gestiontiendas/nuevatienda', function (req, res) {
 
 // CREATE a new store 
 app.post('/agregartienda', function (req, res) {
-    let newStore = new Stores ({
+    let newStore = new StoreModel ({
         brand_name: req.body.brand_name,
         location_name: req.body.location_name,
         website: req.body.website,
@@ -145,14 +115,14 @@ app.post('/agregartienda', function (req, res) {
 
 // EDIT a store values on the website
 app.get('/gestiontiendas/edit/:id', function (req, res) {
-    Stores.findById(req.params.id).exec(function (err, store) {
+    StoreModel.findById(req.params.id).exec(function (err, store) {
         res.render('tiendas_editar', {store: store})
     })
 })
 
 // UPDATE the store values to the DB
 app.put('/editartienda/:id', function (req, res) {
-    Stores.findByIdAndUpdate(req.params.id, req.body, function (err, store) {
+    StoreModel.findByIdAndUpdate(req.params.id, req.body, function (err, store) {
         console.log('DB UPDATE Store -- location_name: ' + req.body.location_name + ' -- id: ' + req.params.id)
         res.redirect('/gestiontiendas')
     })
@@ -161,10 +131,10 @@ app.put('/editartienda/:id', function (req, res) {
 // DELETE a store from the DB
 app.delete('/eliminartienda/:id', function (req, res) {
     let storeName 
-    Stores.findById(req.params.id, function (err, doc) {
+    StoreModel.findById(req.params.id, function (err, doc) {
         storeName = (doc.name) ? doc.location_name : 'NA'
     })
-    Stores.findByIdAndRemove(req.params.id, function (err) {
+    StoreModel.findByIdAndRemove(req.params.id, function (err) {
         if (err) {
             console.log(err)
         } else {
