@@ -1,4 +1,4 @@
-<a class="btn btn-primary" href="/gestiontiendas/nuevatienda">Ingresar Nueva Tienda</a>
+<a class="btn btn-primary" href="/admin/tiendas/agregar">Ingresar Nueva Tienda</a>
 <br />
 <br />
 <h2>Lista de tiendas</h2>
@@ -24,7 +24,7 @@
       <td>{{this.address_commune}}</td>
       <td>{{this.address_region}}</td>
       <td>{{this.phone1}}</td>
-      <td><a class="btn btn-primary btn-sm" href="/gestiontiendas/edit/{{this._id}}">Editar</a></td>
+      <td><a class="btn btn-primary btn-sm" href="/admin/tiendas/editar/{{this._id}}">Editar</a></td>
     </tr>
     {{/each}}
    <tbody>
