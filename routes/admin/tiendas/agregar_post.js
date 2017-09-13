@@ -1,6 +1,18 @@
 const StoreModel = require('../../../dbmodels/store.js').StoreModel
+const { check, validationResult } = require('express-validator/check')
 
-module.exports = function (req, res) {
+module.exports = function (req, res) {                                
+    const errors = validationResult(req)
+
+    if (!errors.isEmpty()) {
+        // console.log(errors.array())
+        return res.render('tiendas_nueva', {
+            errors: errors.mapped()
+        })
+    }
+
+    console.log('check')
+
     let newStore = new StoreModel ({
         brand_name: req.body.brand_name,
         location_name: req.body.location_name,
