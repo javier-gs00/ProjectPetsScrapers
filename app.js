@@ -12,7 +12,13 @@ const routes = require('./routes')
 
 const app = express()
 app.use(bodyParser.urlencoded({extended: true}))
-app.use(methodOverride('_method'))
+// app.use(methodOverride('_method'))
+app.use(methodOverride(function (req, res) {
+    // look in urlencoded POST bodies and delete it
+    let method = req.body._method
+    delete req.body._method
+    return method
+}))
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 

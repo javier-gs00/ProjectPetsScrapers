@@ -2,11 +2,37 @@
 <h3 class="text-muted">Empresa: {{store.brand_name}}</h3>
 <br />
 <div class="container">
-    <form method="POST" action="/admin/tiendas/editar/{{store._id}}?_method=PUT">
-        {{> storeform}}
-    </form>
-    <form method="POST" action="/admin/tiendas/eliminar/{{store._id}}?_method=DELETE">
-        <button class="btn btn-danger" type="submit">Eliminar</button>
-    </form>
-    <br />
+
+    {{#if errors}}
+        {{#each errors}}
+            <div class="alert alert-danger" role="alert">
+                {{ this.msg }}
+            </div>
+        {{/each}}
+    {{/if}}
+
+    {{#if store._id}}
+        <form method="POST" action="/admin/tiendas/editar/{{store._id}}">
+            <input type="hidden" name="_method" value="PUT">
+            {{> storeform}}
+        </form>
+
+        <form method="POST" action="/admin/tiendas/eliminar/{{store._id}}">
+            <input type="hidden" name="_method" value="DELETE">
+            <button class="btn btn-danger" type="submit">Eliminar</button>
+        </form>
+        <br />
+
+        {{else}}
+        <form method="POST" action="/admin/tiendas/editar/{{id}}">
+            <input type="hidden" name="_method" value="PUT">
+            {{> storeform}}
+        </form>
+
+        <form method="POST" action="/admin/tiendas/eliminar/{{id}}">
+            <input type="hidden" name="_method" value="DELETE">
+            <button class="btn btn-danger" type="submit">Eliminar</button>
+        </form>
+
+    {{/if}}
 </div>
