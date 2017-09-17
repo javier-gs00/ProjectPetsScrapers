@@ -5,6 +5,7 @@ const medicamentos = require('./medicamentos')
 const servicios = require('./servicios')
 const tiendas = require('./tiendas')
 const admin = require('./admin')
+const users = require('./usuarios')
 
 // Landing page
 routes.get('/', function (req, res) {
@@ -22,6 +23,8 @@ routes.use('/servicios', servicios)
 routes.use('/tiendas', tiendas)
 
 routes.use('/admin', admin)
+
+routes.use('/usuarios', users)
 
 module.exports = routes
 
