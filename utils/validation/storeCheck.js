@@ -1,4 +1,4 @@
-const { check, validationResult } = require('express-validator/check')
+// const { check, validationResult } = require('express-validator/check')
 
 module.exports = [
     check('brand_name', 'Debe ingresar el nombre de la empresa').isLength({ min: 1 }),

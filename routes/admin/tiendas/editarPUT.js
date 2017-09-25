@@ -1,5 +1,5 @@
 const StoreModel = require('../../../dbmodels/store.js').StoreModel
-const { check, validationResult } = require('express-validator/check')
+// const { check, validationResult } = require('express-validator/check')
 
 // UPDATE the store values to the DB
 module.exports = function (req, res) {

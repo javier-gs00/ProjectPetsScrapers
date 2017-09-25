@@ -1,5 +1,5 @@
 const express = require('express')
-const { check, validationResult } = require('express-validator/check')
+// const { check, validationResult } = require('express-validator/check')
 
 module.exports = [
     check('username', 'El nombre de usuario debe contener entre 4 y 15 caracteres').isLength({ min: 4, max: 15 }),

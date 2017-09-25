@@ -13,9 +13,9 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "express-handlebars": "^3.0.0",
-    "express-validator": "^4.1.1",
     "method-override": "^2.3.9",
     "mongoose": "^4.10.8",
+    "validator": "^8.2.0",
     "x-ray": "^2.3.2"
   }
 }
