@@ -1,6 +1,7 @@
 const validator = require('validator')
 const mongoose = require('mongoose')
-const UserModel = require('../../dbmodels/user.js').UserModel
+const UserModel = require('../../utils/dbmodels/user.js').UserModel
+const validation = require('../../utils/validation/validation.js')
 
 module.exports = function (req, res) {
 
@@ -8,7 +9,9 @@ module.exports = function (req, res) {
 
     let errObj = {
         usernameErr: '',
+        usernameCharErr: '',
         noUsername: '',
+        usernameSanitization: '',
         emailErr: '',
         emailUsed: '',
         noEmail: '',
@@ -26,11 +29,11 @@ module.exports = function (req, res) {
     // EMAIL CHECK
     if (req.body.email) {
         email = validator.trim(req.body.email)
-        email = validator.normalizeEmail(email)
-
-        if (validator.isEmail(email) == false) {
-            errObj.emailErr = 'Debe ingresar un correo electronico en el formato "ejemplo@correo.com"'
-        }
+        // email = validator.normalizeEmail(email)
+        email = validation.check.normalizeEmail(email)
+        
+        console.log(email)
+        errObj.emailErr = validation.check.email(email, 'Debe ingresar un correo electronico en el formato "ejemplo@correo.com"')
         
         UserModel.find({email: email}, function (err, result) {
             if (Object.keys(result).length !== 0) {
@@ -40,10 +43,11 @@ module.exports = function (req, res) {
             // USERNAME CHECK
             if (req.body.username) {
                 username = validator.trim(req.body.username)
+                // let whitelist = validator.whitelist(username, '\\^[a-zA-Z0-9\\]*$/')
 
-                if (validator.isLength(username, { min:4, max:15 }) == false) {
-                    errObj.usernameErr = 'El nombre de usuario debe contener entre 4 y 15 caracteres'
-                }
+                errObj.usernameErr = validation.check.length(username, 4, 15, 'El nombre de usuario debe contener entre 4 y 15 caracteres')
+
+                errObj.usernameCharErr = validation.check.alpha(username, 'es-ES', 'Solo se permiten caracteres del español')
             } else {
                 errObj.noUsername = 'Favor ingresar un nombre de usuario'
             }
@@ -53,17 +57,11 @@ module.exports = function (req, res) {
                 password = req.body.password
                 passwordMatch = req.body.passwordMatch
 
-                if (validator.isLength(password, { min: 8, max: 100 }) == false) {
-                    errObj.passErr1 = 'La contraseña debe tener al menos 8 caracteres'
-                }
+                errObj.passErr1 = validation.check.length(password, 8, 100, 'La contraseña debe tener al menos 8 caracteres')
 
-                if (validator.matches(password, /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/, "i") == false) {
-                    errObj.passErr2 = 'La contraseña debe contener al menos una mayuscula, una minuscula, un número y un caracter especial'
-                }
+                errObj.passErr2 = validation.check.match(password, /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/, 'La contraseña debe contener al menos una mayuscula, una minuscula, un número y un caracter especial')
 
-                if (password !== passwordMatch) {
-                    errObj.passErr3 = 'Las contraseñas no coinciden'
-                }
+                errObj.passErr3 = validation.check.equal(password, passwordMatch, 'Las contraseñas no coinciden')
             } else {
                 errObj.noPass = 'Favor ingresar una contraseña'
             }

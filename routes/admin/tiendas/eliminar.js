@@ -1,4 +1,4 @@
-const StoreModel = require('../../../dbmodels/store.js').StoreModel
+const StoreModel = require('../../../utils/dbmodels/store.js').StoreModel
 
 // DELETE a store from the DB
 module.exports = function (req, res) {

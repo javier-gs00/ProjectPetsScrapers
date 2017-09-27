@@ -1,6 +1,6 @@
 const tiendas = require('express').Router()
 const single = require('./single')
-const StoreModel = require('../../dbmodels/store.js').StoreModel
+const StoreModel = require('../../utils/dbmodels/store.js').StoreModel
 
 // READ and show all stores data
 tiendas.get('/', function (req, res) {

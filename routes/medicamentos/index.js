@@ -1,5 +1,5 @@
 const medicamentos = require('express').Router()
-const MedModel = require('../../dbmodels/medicine.js').MedModel
+const MedModel = require('../../utils/dbmodels/medicine.js').MedModel
 
 // READ and show all medicine data
 medicamentos.get('/', function (req, res) {
@@ -11,12 +11,3 @@ medicamentos.get('/', function (req, res) {
 })
 
 module.exports = medicamentos
-
-// 
-// app.get('/medicamentos', function (req, res) {
-//     MedModel.find().exec(function (err, medicamentos) {
-//         res.render('medicamentos', {
-//             product: medicamentos
-//         })
-//     })
-// })

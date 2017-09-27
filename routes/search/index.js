@@ -1,5 +1,5 @@
 const search = require('express').Router()
-const MedModel = require('../../dbmodels/medicine.js').MedModel
+const MedModel = require('../../utils/dbmodels/medicine.js').MedModel
 
 // (READ) Search form route and return data
 search.get('/', function (req, res) {
