@@ -1,5 +1,6 @@
 const validator = require('validator')
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
 const UserModel = require('../../utils/dbmodels/user.js').UserModel
 const validation = require('../../utils/validation/validation.js')
 
@@ -86,19 +87,24 @@ module.exports = function (req, res) {
                     }
                 })
             } else {
-                let newUser = new UserModel({
-                    username: req.body.username,
-                    email: req.body.email,
-                    password: req.body.password
-                })
-            
-                newUser.save(function (err, newUser) {
-                    if (err) {
-                        console.log(err)
-                    } else {
-                        console.log('DB INSERT User with username: ' + newUser.username)
-                        res.redirect('/usuarios/login')
-                    }
+                bcrypt.genSalt(10, function (err, salt) {
+                    bcrypt.hash(req.body.password, salt, function (err, hash) {
+                        let newUser = new UserModel({
+                            username: req.body.username,
+                            email: req.body.email,
+                            password: hash
+                        })
+                    
+                        newUser.save(function (err, newUser) {
+                            if (err) {
+                                console.log(err)
+                            } else {
+                                console.log('DB INSERT User with username: ' + newUser.username)
+                                res.redirect('/usuarios/login')
+                            }
+                        })
+
+                    })
                 })
             }      
         })
