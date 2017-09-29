@@ -5,11 +5,8 @@ const fs = require('fs')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const session = require('express-session')
+const passport = require('passport')
 const routes = require('./routes')
-// import web scrapers
-// const meddaymascotas = require('./scrapers/meddaymascotas.js');
-// const noi = require('./scrapers/noi.js')
-// const savecollection = require('./collections/savecollection.js')
 
 const app = express()
 app.use(bodyParser.urlencoded({extended: true}))
@@ -25,6 +22,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }))
+app.use(passport.initialize())
+app.use(passport.session())
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 

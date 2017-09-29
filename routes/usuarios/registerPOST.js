@@ -1,6 +1,7 @@
 const validator = require('validator')
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
+const passport = require('passport')
 const UserModel = require('../../utils/dbmodels/user.js').UserModel
 const validation = require('../../utils/validation/validation.js')
 
@@ -100,7 +101,10 @@ module.exports = function (req, res) {
                                 console.log(err)
                             } else {
                                 console.log('DB INSERT User with username: ' + newUser.username)
-                                res.redirect('/usuarios/login')
+                                
+                                req.login(newUser, function (err) {
+                                    res.redirect('/')
+                                })
                             }
                         })
 
