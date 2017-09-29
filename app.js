@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars')
 const fs = require('fs')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
+const session = require('express-session')
 const routes = require('./routes')
 // import web scrapers
 // const meddaymascotas = require('./scrapers/meddaymascotas.js');
@@ -19,6 +20,11 @@ app.use(methodOverride(function (req, res) {
     delete req.body._method
     return method
 }))
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false
+}))
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 
@@ -27,13 +33,6 @@ const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 
 app.use('/', routes)
-
-// savecollection.save('medsnoi.json')
-
-// let date = new Date()
-// console.log('Process started at: ' + date.getSeconds())
-// meddaymascotas.scrapper();
-// noi.scraper()
 
 app.listen(3000, function () {
     console.log('App listening on port 3000')
