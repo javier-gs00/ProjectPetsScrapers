@@ -53,6 +53,13 @@ app.use(passport.session())
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 
+app.use(function (req, res, next) {
+    // For every response to the user pass along the isAuthenticated property
+    // This will be passed through every view automatically (no need to pass it through the routes)
+    res.locals.isAuthenticated = req.isAuthenticated()
+    next()
+})
+
 app.use('/', routes)
 
 passport.use(new LocalStrategy(

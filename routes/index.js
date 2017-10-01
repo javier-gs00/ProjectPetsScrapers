@@ -30,6 +30,14 @@ routes.use('/admin', authenticationMiddleware(), admin)
 
 routes.use('/usuarios', users)
 
+routes.use('/logout', function (req, res) {
+    // Clear login session and remove req.user
+    req.logOut()
+    // Clears session store
+    req.session.destroy()
+    res.redirect('/')
+})
+
 // Passport Middleware for routes
 passport.serializeUser(function (user, done) {
     done(null, user._id)
@@ -51,8 +59,3 @@ function authenticationMiddleware () {
 }
 
 module.exports = routes
-
-// // Manage web scrapers
-// app.get('/scrapers', function (req, res) {
-//     res.render('scrapers')
-// })
