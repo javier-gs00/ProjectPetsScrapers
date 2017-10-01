@@ -26,10 +26,11 @@ routes.use('/servicios', servicios)
 
 routes.use('/tiendas', tiendas)
 
-routes.use('/admin', admin)
+routes.use('/admin', authenticationMiddleware(), admin)
 
 routes.use('/usuarios', users)
 
+// Passport Middleware for routes
 passport.serializeUser(function (user, done) {
     done(null, user._id)
 })
@@ -39,6 +40,15 @@ passport.deserializeUser(function (id, done) {
         done(err, user)
     })
 })
+
+function authenticationMiddleware () {  
+	return (req, res, next) => {
+		console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+
+	    if (req.isAuthenticated()) return next();
+	    res.redirect('/usuarios/login')
+	}
+}
 
 module.exports = routes
 

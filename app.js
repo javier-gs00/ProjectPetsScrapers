@@ -4,17 +4,24 @@ const exphbs = require('express-handlebars')
 const fs = require('fs')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
+const UserModel = require('./utils/dbmodels/user.js').UserModel
+const routes = require('./routes')
+
+// Authentication Packages
 const session = require('express-session')
 const MongoDBStore = require('connect-mongodb-session')(session)
 const passport = require('passport')
-const routes = require('./routes')
+const LocalStrategy = require('passport-local').Strategy
+const bcrypt = require('bcrypt')
 
 const app = express()
 
+// MongoDB Connection
 mongoose.connect('mongodb://localhost/projectpets')
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 
+// MongoDB Store initialization for sessions
 const store = new MongoDBStore (
     {
         uri: 'mongodb://localhost/projectpets',
@@ -29,7 +36,6 @@ store.on('error', function (error) {
 })
 
 app.use(bodyParser.urlencoded({extended: true}))
-// app.use(methodOverride('_method'))
 app.use(methodOverride(function (req, res) {
     // look in urlencoded POST bodies and delete it
     let method = req.body._method
@@ -48,6 +54,27 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 
 app.use('/', routes)
+
+passport.use(new LocalStrategy(
+    function (username, password, done) {
+        UserModel.findOne({ username: username }, function (err, user) {
+            if (err) { return done(err) }
+
+            if (!user) {
+                console.log('user not found')
+                return done(null, false, { message: 'Nombre de usuario incorrecto' })
+            }
+
+            bcrypt.compare(password, user.password, function (err, res) {
+                if (res === true) {
+                    return done(null, user)
+                } else {
+                    return done(null, false, { message: 'Contraseña incorrecta' })
+                }
+            })
+        })
+    }
+))
 
 app.listen(3000, function () {
     console.log('App listening on port 3000')
