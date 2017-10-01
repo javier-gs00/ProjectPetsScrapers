@@ -63,18 +63,25 @@ passport.use(new LocalStrategy(
             if (!user) {
                 console.log('user not found')
                 return done(null, false, { message: 'Nombre de usuario incorrecto' })
+            } else {
+                bcrypt.compare(password, user.password, function (err, res) {
+                    if (res === true) {
+                        return done(null, user)
+                    } else {
+                        return done(null, false, { message: 'Contraseña incorrecta' })
+                    }
+                })
             }
-
-            bcrypt.compare(password, user.password, function (err, res) {
-                if (res === true) {
-                    return done(null, user)
-                } else {
-                    return done(null, false, { message: 'Contraseña incorrecta' })
-                }
-            })
         })
     }
 ))
+
+// Catch 404 and forward to error handler
+app.use(function (req, res, next) {
+    let err = new Error ('Not Found')
+    err.status = 404
+    next(err)
+})
 
 app.listen(3000, function () {
     console.log('App listening on port 3000')
