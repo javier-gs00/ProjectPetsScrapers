@@ -1,15 +1,9 @@
 const tiendas = require('express').Router()
 const single = require('./single')
+const filter = require('./filter')
 const StoreModel = require('../../utils/dbmodels/store.js').StoreModel
 
-// READ and show all stores data
-tiendas.get('/', function (req, res) {
-    StoreModel.find().exec(function (err, stores) {
-        res.render('tiendas', {
-            store: stores
-        })
-    })
-})
+tiendas.get('/', filter)
 
 tiendas.get('/:name', single)
 
