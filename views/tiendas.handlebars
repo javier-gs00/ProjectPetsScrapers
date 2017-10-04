@@ -1,28 +1,24 @@
 <h5>Filtrar Resultados: </h5>
 <form action='/tiendas' method="GET">
-  <div class="row">
-    <div class="col">
-      <div class="form-group">
-        <label for="comuna">Comuna</label>
+  <div class="form-row align-items-center">
+    <div class="col-auto">
+        <label class="sr-only" for="comuna">Comuna</label>
         <select class="form-control" id="comuna" name="comuna">
-          <option value="">Todas</option>
+          <option value="">Comuna</option>
           <option>Santiago</option>
           <option>Las Condes</option>
           <option>asd</option>
         </select>
-      </div>
     </div>
-    <div class="col">
-      <div class="form-group">
-        <label for="region">Región</label>
+    <div class="col-auto">
+        <label class="sr-only" for="region">Región</label>
         <select class="form-control" id="region" name="region">
-          <option value="">Todas</option>
+          <option value="">Región</option>
           <option>Región Metropolitana</option>
           <option>asd</option>
         </select>
-      </div>
     </div>
-    <div class="col">
+    <div class="col-auto">
       <button type="submit" class="btn btn-primary">Filtrar</button>
     </div>
   </div>

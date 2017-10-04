@@ -17,22 +17,16 @@ module.exports = function (req, res) {
         StoreModel.
             find({ 
                 address_commune:  new RegExp(req.query.comuna, 'i'), 
-                address_region: new RegExp(req.query.region, 'i') }, function (err, stores) {
-                                if (err) {
-                                    handleError(err)
-                                    StoreModel.find().exec(function (err, stores) {
-                                        res.render('tiendas', {
-                                            store: stores,
-                                            error: true
-                                        })
-                                    })
-                                }
-                                let isEmpty = (stores[0])? false : true
-                                res.render('tiendas', { 
-                                    store: stores, 
-                                    empty: isEmpty 
-                                })
-                            })
+                address_region: new RegExp(req.query.region, 'i')
+            }, function (err, stores) {
+                if (err) handleError(err)
+
+                let isEmpty = (stores[0])? false : true
+                res.render('tiendas', { 
+                    store: stores, 
+                    empty: isEmpty 
+                })
+            })
     } else {
     // No filters used
         StoreModel.find().exec(function (err, stores) {
