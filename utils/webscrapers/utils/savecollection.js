@@ -3,10 +3,9 @@
 const mongoose = require('mongoose')
 const fs = require('fs')
 
-let counter = 0
-
 exports.save = function (filename) {
-    let location = '/scrapersJSON/' + filename
+    let counter = 0
+    let location = '/scrapers_json_files/' + filename
 
     // Define medicine Mongoose Schema
     let medSchema = mongoose.Schema({

@@ -1,6 +1,6 @@
 const xray = require('x-ray')
 const fs = require('fs')
-const Medicine = require("../collections/medicine.js")
+const Medicine = require("../utils/medicine.js")
 
 let x = xray({}).delay(1000)
 let medList = []

@@ -60,6 +60,13 @@ app.use(function (req, res, next) {
     next()
 })
 
+app.use(function (req, res, next) {
+    // pass __dirname for saving and loading files when using the web scrapers
+    let dirname = __dirname
+    res.locals.dirname = dirname
+    next()
+})
+
 app.use('/', routes)
 
 passport.use(new LocalStrategy(

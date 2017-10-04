@@ -1,13 +1,13 @@
 const xray = require('x-ray')
 const fs = require('fs')
-const Medicine = require('../collections/medicine.js')
+const Medicine = require('../utils/medicine.js')
 
 let date = new Date()
 let x = xray().delay(1000)
 let medList = []
 let counter = 0
 
-exports.scraper = function () {
+exports.scraper = function (path) {
     x(
         'https://www.noi.la/mascotte/perros/farmacia-perros/',
         'div.product',
@@ -39,9 +39,9 @@ exports.scraper = function () {
                 medList.push(med)
             })
 
-            fs.writeFile('medsnoi.json', JSON.stringify(medList, null, 2), function (err) {
+            fs.writeFile(path, JSON.stringify(medList, null, 2), function (err) {
                 if (err) {
-                    console.log("medsnoi: " + err)
+                    console.log("medsnoi err: " + err)
                 } else {
                     console.log('medsnoi.json updated')
                     console.log(counter + ' elements saved')
