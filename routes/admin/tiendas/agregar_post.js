@@ -18,6 +18,7 @@ module.exports = function (req, res) {
         email: ''
     }
 
+    // Retrieve Form Data
     let brand_name = req.body.brand_name,
         location_name = req.body.location_name,
         website = req.body.website,
@@ -32,6 +33,7 @@ module.exports = function (req, res) {
         shipping = req.body.shipping,
         clinic = req.body.clinic
 
+    // Validate and populate the error object if there is any error
     errObj.brandnameLength = validation.check.length(brand_name, 1, 100, 'Debe ingresar el nombre de la empresa')
     errObj.locationnameLength = validation.check.length(location_name, 1, 100, 'Debe ingresar el nombre del local')
     errObj.websiteURL = validation.check.url(website, 'El sitio debe estar en el formato http://www.sitio.x')
