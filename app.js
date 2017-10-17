@@ -15,16 +15,16 @@ const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt')
 
 const app = express()
+require('dotenv').config()
 
 // MongoDB Connection
-mongoose.connect('mongodb://localhost/projectpets')
+mongoose.connect(process.env.DB_HOST)
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 
 // MongoDB Store initialization for sessions
-const store = new MongoDBStore (
-    {
-        uri: 'mongodb://localhost/projectpets',
+const store = new MongoDBStore ({
+        uri: process.env.DB_HOST,
         collection: 'Sessions'
     }
 )
