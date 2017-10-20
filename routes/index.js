@@ -51,7 +51,7 @@ passport.deserializeUser(function (id, done) {
 
 function authenticationMiddleware () {  
 	return (req, res, next) => {
-		console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+		console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport.user)}`);
 
 	    if (req.isAuthenticated()) return next();
 	    res.redirect('/usuarios/login')

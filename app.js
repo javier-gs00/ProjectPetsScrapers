@@ -42,6 +42,7 @@ app.use(methodOverride(function (req, res) {
     delete req.body._method
     return method
 }))
+
 app.use(session({
     secret: 'secret',
     store: store,
@@ -50,6 +51,7 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
+
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 
@@ -97,6 +99,6 @@ app.use(function (req, res, next) {
     next(err)
 })
 
-app.listen(3000, function () {
+app.listen(process.env.PORT, function () {
     console.log('App listening on port 3000')
 })

@@ -29,6 +29,14 @@
     </a>
 </div> --}}
 
+{{#if errors}}
+    {{#each errors}}
+        <div class="alert alert-secondary">
+            {{ this.msg }}
+        </div>
+    {{/each}}
+{{/if}}
+
 {{#each med}}
 <div>
     <a href="{{this.href}}" class="list-group-item list-group-item-action flex-column align-items-start">

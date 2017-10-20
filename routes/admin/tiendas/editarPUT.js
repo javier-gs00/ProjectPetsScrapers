@@ -1,4 +1,4 @@
-const StoreModel = require('../../../utils/dbmodels/store.js').StoreModel
+const Stores = require('../../../utils/dbmodels/store.js')
 const validation = require('../../../utils/validation/validation.js')
 
 // UPDATE the store values to the DB
@@ -63,7 +63,7 @@ module.exports = function (req, res) {
             errors: errors
         })
     } else {
-        StoreModel.findByIdAndUpdate(req.params.id, req.body, function (err, store) {
+        Stores.findByIdAndUpdate(req.params.id, req.body, function (err, store) {
             console.log('DB UPDATE Store -- location_name: ' + req.body.location_name + ' -- id: ' + req.params.id)
             res.redirect('/admin/tiendas')
         })

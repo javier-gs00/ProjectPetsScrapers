@@ -14,5 +14,19 @@ let MedSchema = new Schema({
 
 MedModel = mongoose.model('meds', MedSchema)
 
-module.exports.MedModel = MedModel
+function find (query, cb) {
+    MedModel.find({ name: new RegExp(query, 'i')}, function (err, meds) {
+        cb(err, meds)
+    })
+}
 
+function findAll (cb) {
+    MedModel.find().exec(function (err, meds) {
+        cb(err, meds)
+    })
+}
+
+module.exports = {
+    find,
+    findAll
+}
