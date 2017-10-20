@@ -7,7 +7,7 @@ const servicios = require('./servicios')
 const tiendas = require('./tiendas')
 const admin = require('./admin')
 const users = require('./usuarios')
-const UserModel = require('../utils/dbmodels/user.js').UserModel
+const Users = require('../utils/dbmodels/user.js')
 
 // Landing page
 routes.get('/', function (req, res) {
@@ -44,14 +44,17 @@ passport.serializeUser(function (user, done) {
 })
 
 passport.deserializeUser(function (id, done) {
-    UserModel.findById(id, function (err, user) {
+    Users.findById(id, function (err, user) {
         done(err, user)
     })
+        // UserModel.findById(id, function (err, user) {
+        //     done(err, user)
+        // })
 })
 
 function authenticationMiddleware () {  
 	return (req, res, next) => {
-		console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport.user)}`);
+		console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}` + ' - username: ' + req.user.username);
 
 	    if (req.isAuthenticated()) return next();
 	    res.redirect('/usuarios/login')

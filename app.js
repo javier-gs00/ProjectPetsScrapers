@@ -4,7 +4,7 @@ const exphbs = require('express-handlebars')
 const fs = require('fs')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
-const UserModel = require('./utils/dbmodels/user.js').UserModel
+const Users = require('./utils/dbmodels/user.js')
 const routes = require('./routes')
 
 // Authentication Packages
@@ -73,9 +73,9 @@ app.use('/', routes)
 
 passport.use(new LocalStrategy(
     function (username, password, done) {
-        UserModel.findOne({ username: username }, function (err, user) {
+        Users.findByUsername(username, function (err, user) {
             if (err) { return done(err) }
-
+            
             if (!user) {
                 console.log('user not found')
                 return done(null, false, { message: 'Nombre de usuario incorrecto' })
@@ -84,11 +84,28 @@ passport.use(new LocalStrategy(
                     if (res === true) {
                         return done(null, user)
                     } else {
+                        console.log('login attempt failed for user: ' + user.username)
                         return done(null, false, { message: 'Contraseña incorrecta' })
                     }
                 })
             }
         })
+        // UserModel.findOne({ username: username }, function (err, user) {
+        //     if (err) { return done(err) }
+
+        //     if (!user) {
+        //         console.log('user not found')
+        //         return done(null, false, { message: 'Nombre de usuario incorrecto' })
+        //     } else {
+        //         bcrypt.compare(password, user.password, function (err, res) {
+        //             if (res === true) {
+        //                 return done(null, user)
+        //             } else {
+        //                 return done(null, false, { message: 'Contraseña incorrecta' })
+        //             }
+        //         })
+        //     }
+        // })
     }
 ))
 

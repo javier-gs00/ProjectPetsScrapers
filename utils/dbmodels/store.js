@@ -18,7 +18,7 @@ let StoreSchema = mongoose.Schema({
     clinic: String
 })
 
-StoreModel = mongoose.model('stores', StoreSchema)
+let StoreModel = mongoose.model('stores', StoreSchema)
 
 function findAll (cb) {
     StoreModel.find().exec(function (err, stores) {

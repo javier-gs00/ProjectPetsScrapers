@@ -1,9 +1,8 @@
 const users = require('express').Router()
 const passport = require('passport')
-const loginGET = require('./loginGET')
-const loginPOST = require('./loginPOST')
-const registerGET = require('./registerGET')
-const registerPOST = require('./registerPOST')
+const loginGET = require('./login_get')
+const registerGET = require('./register_get')
+const registerPOST = require('./register_post')
 
 users.get('/login', loginGET)
 

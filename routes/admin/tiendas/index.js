@@ -1,8 +1,8 @@
 const tiendas = require('express').Router()
 const agregarGET = require('./agregar_get')
 const agregarPOST = require('./agregar_post')
-const editarGET = require('./editarGET')
-const editarPUT = require('./editarPUT')
+const editarGET = require('./editar_get')
+const editarPUT = require('./editar_put')
 const eliminar = require('./eliminar')
 const Stores = require('../../../utils/dbmodels/store.js')
 

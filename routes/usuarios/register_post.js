@@ -2,7 +2,7 @@ const validator = require('validator')
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const passport = require('passport')
-const UserModel = require('../../utils/dbmodels/user.js').UserModel
+const Users = require('../../utils/dbmodels/user.js')
 const validation = require('../../utils/validation/validation.js')
 
 module.exports = function (req, res) {
@@ -33,11 +33,10 @@ module.exports = function (req, res) {
         email = validator.trim(req.body.email)
         // email = validator.normalizeEmail(email)
         email = validation.check.normalizeEmail(email)
-        
-        console.log(email)
+
         errObj.emailErr = validation.check.email(email, 'Debe ingresar un correo electronico en el formato "ejemplo@correo.com"')
-        
-        UserModel.find({email: email}, function (err, result) {
+
+        Users.findByEmail(email, function (err, result) {
             if (Object.keys(result).length !== 0) {
                 errObj.emailUsed = 'Este email ya se encuentra registrado. Favor ingresar otro email'
             }
@@ -49,7 +48,7 @@ module.exports = function (req, res) {
 
                 errObj.usernameErr = validation.check.length(username, 4, 15, 'El nombre de usuario debe contener entre 4 y 15 caracteres')
 
-                errObj.usernameCharErr = validation.check.alpha(username, 'es-ES', 'Solo se permiten caracteres del español')
+                errObj.usernameCharErr = validation.check.alpha(username, 'es-ES', 'El nombre de usuario sólo caracteres del español')
             } else {
                 errObj.noUsername = 'Favor ingresar un nombre de usuario'
             }
@@ -90,27 +89,17 @@ module.exports = function (req, res) {
             } else {
                 bcrypt.genSalt(10, function (err, salt) {
                     bcrypt.hash(req.body.password, salt, function (err, hash) {
-                        let newUser = new UserModel({
-                            username: req.body.username,
-                            email: req.body.email,
-                            password: hash
-                        })
-                    
-                        newUser.save(function (err, newUser) {
-                            if (err) {
-                                console.log(err)
-                            } else {
-                                console.log('DB INSERT User with username: ' + newUser.username)
-                                
-                                req.login(newUser, function (err) {
-                                    res.redirect('/')
-                                })
-                            }
-                        })
 
+                        Users.save(req.body.username, hash, req.body.email, function (err, newUser) {
+                            console.log('DB INSERT User with username: ' + newUser.username)
+                            
+                            req.login(newUser, function (err) {
+                                res.redirect('/')
+                            })
+                        })
                     })
                 })
-            }      
+            }    
         })
     } else {
         errors = [{ msg: 'Favor completar los campos requeridos'}]

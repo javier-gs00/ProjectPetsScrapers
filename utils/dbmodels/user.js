@@ -8,6 +8,46 @@ let UserSchema = mongoose.Schema({
     password: String
 })
 
-UserModel = mongoose.model('users', UserSchema)
+let UserModel = mongoose.model('users', UserSchema)
 
-module.exports.UserModel = UserModel
+function findByUsername (data, cb) {
+    UserModel.findOne({ username: data }, function (err, user) {
+        cb(err, user)
+    })
+}
+
+function findByEmail (data, cb) {
+    UserModel.find({ email: data }, function (err, result) {
+        cb(err, result)
+    })
+}
+
+function findById (id, cb) {
+    UserModel.findById(id, function (err, user) {
+        cb(err, user)
+    })
+}
+
+function save (username, password, email, cb) {
+    let newUser = new UserModel({
+        username: username,
+        password: password,
+        email: email
+    })
+
+    newUser.save(function (err, newUser) {
+        if (err) {
+            console.log(err)
+            return
+        } else {
+            cb(err, newUser)
+        }
+    })
+}
+
+module.exports = {
+    findByUsername,
+    findByEmail,
+    findById,
+    save
+}
