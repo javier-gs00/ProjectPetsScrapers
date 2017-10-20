@@ -17,8 +17,8 @@ function findByUsername (data, cb) {
 }
 
 function findByEmail (data, cb) {
-    UserModel.find({ email: data }, function (err, result) {
-        cb(err, result)
+    UserModel.findOne({ email: data }, function (err, user) {
+        cb(err, user)
     })
 }
 

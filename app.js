@@ -71,9 +71,12 @@ app.use(function (req, res, next) {
 
 app.use('/', routes)
 
-passport.use(new LocalStrategy(
+passport.use(new LocalStrategy({
+    // Replaces username with the name of the properties in the POST body that are sent to the server 
+        usernameField: 'email'
+    },
     function (username, password, done) {
-        Users.findByUsername(username, function (err, user) {
+        Users.findByEmail(username, function (err, user) {
             if (err) { return done(err) }
             
             if (!user) {
@@ -90,22 +93,6 @@ passport.use(new LocalStrategy(
                 })
             }
         })
-        // UserModel.findOne({ username: username }, function (err, user) {
-        //     if (err) { return done(err) }
-
-        //     if (!user) {
-        //         console.log('user not found')
-        //         return done(null, false, { message: 'Nombre de usuario incorrecto' })
-        //     } else {
-        //         bcrypt.compare(password, user.password, function (err, res) {
-        //             if (res === true) {
-        //                 return done(null, user)
-        //             } else {
-        //                 return done(null, false, { message: 'Contraseña incorrecta' })
-        //             }
-        //         })
-        //     }
-        // })
     }
 ))
 

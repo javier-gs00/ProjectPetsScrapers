@@ -47,9 +47,6 @@ passport.deserializeUser(function (id, done) {
     Users.findById(id, function (err, user) {
         done(err, user)
     })
-        // UserModel.findById(id, function (err, user) {
-        //     done(err, user)
-        // })
 })
 
 function authenticationMiddleware () {  
