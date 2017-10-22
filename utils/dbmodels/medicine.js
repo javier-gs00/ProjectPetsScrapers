@@ -26,7 +26,16 @@ function findAll (cb) {
     })
 }
 
+function sort (query, category, order, callback) {
+    let sortOrder = (order > 0)? category : '-' + category
+
+    MedModel.find({ name: new RegExp(query, 'i') }).sort(sortOrder).exec(
+        callback
+    )
+}
+
 module.exports = {
     find,
-    findAll
+    findAll,
+    sort
 }

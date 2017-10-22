@@ -1,3 +1,6 @@
 {{> searchform}}
 <br />
+{{#if results}}
+    <p>Mostrando resultados para: <strong>{{query}}</strong></p>
+{{/if}}
 {{> results}}

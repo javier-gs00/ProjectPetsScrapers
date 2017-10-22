@@ -1,10 +1,41 @@
 <form method="GET" action="/search">
-    <div class="row">
+    <div class="form-row align-items-center">
         <div class="col">
-            <input type="text" class="form-control" name="query" placeholder="¿Qué estas buscando?">
+            <input type="text" class="form-control" name="query" placeholder="¿Qué estas buscando?" value={{query}}>
         </div>
         <div class="col">
             <button type="submit" class="btn btn-primary">Buscar</button>
         </div>
+        {{#if results}}
+        <br />
+        <label>Ordenar por: </label>
+        <div class="col-auto">
+            <label class="sr-only" for="nombre">Nombre</label>
+                <select class="form-control" id="nombre" name="name">
+                    <option value="">Nombre</option>
+                    <option value="name">A-Z</option>
+                    <option value="-name">Z-A</option>
+                </select>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="tienda">Tienda</label> 
+                <select class="form-control" id="tienda" name="store">
+                    <option value="">Tienda</option>
+                    <option value="store">A-Z</option>
+                    <option value="-store">Z-A</option>
+                </select>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="precio">Precio</label>
+                <select class="form-control" id="precio" name="price">
+                    <option value="">Precio</option>
+                    <option value="store">Asc</option>
+                    <option value="-store">Desc</option>
+                </select>
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </div>
+        {{/if}}        
     </div>
 </form>
