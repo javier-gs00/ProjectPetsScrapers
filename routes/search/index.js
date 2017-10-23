@@ -6,7 +6,13 @@ const check = require('../../utils/validation/validation.js').check
 search.get('/', function (req, res) {
     console.log(req.query.query)
     let query = req.query.query
+    let nameFilter = req.query.name
+    let storeFilter = req.query.store
+    let priceFilter = req.query.price
+
+    console.log(nameFilter == undefined)
  
+    // Check contents of query before sending it to the database
     function checkQuery (query, callback) {
         let errors = []
 
@@ -24,11 +30,14 @@ search.get('/', function (req, res) {
             return res.render('home', {
                 errors: errors
             })
+        } else if (query === null) {
+            return res.redirect('/')
         } else {
             callback(null, query)
         }
     }
 
+    // Check if results exists then renders the view
     function checkResults (results) {
         let errors = []
         
@@ -43,7 +52,8 @@ search.get('/', function (req, res) {
             results: results,
             errors: errors,
             query: query,
-            med: results
+            med: results,
+            messsage: 'hello world'
         })
     }
 
@@ -57,23 +67,39 @@ search.get('/', function (req, res) {
         return true
     }
 
-    // Filter used
-    if (isEmpty(req.query) === false) {
-        checkQuery(query, function () {
-            Meds.find(query, function (err, meds) {
-                if (req.query.name == '' && req.query.store == '' && req.query.price == '') return checkResults(meds)
 
-                Meds.sort(query, 'name', -1, function (err, meds) {
-                    checkResults(meds)
-                })
-            })
-        })
-    } else {
+    if (query != '' && nameFilter == undefined && storeFilter == undefined && priceFilter == undefined) {
     // No filters used
         checkQuery(query, function () {
-            Meds.find(query, function (err, meds) {            
+            Meds.find(query, function (err, meds) {
+                console.log('no sorting')            
                 checkResults(meds)
             })
+        })
+    } else if (query != '' || nameFilter != undefined || storeFilter != undefined || priceFilter != undefined) {
+    // Filter used
+        checkQuery(query, function () {
+            let filter = ''
+
+            if ( nameFilter != '') {
+                filter = nameFilter
+            } else if ( storeFilter != '') {
+                filter = storeFilter
+            } else if ( priceFilter != '') {
+                filter = priceFilter
+            }
+
+            if (filter == '') {
+                Meds.find(query, function (err, meds) {
+                    console.log('no filter')
+                    checkResults(meds)
+                })
+            } else {
+                Meds.sort(query, filter, function (err, meds) {
+                    console.log('filter used')
+                    checkResults(meds)
+                })
+            }
         })
     }
 })

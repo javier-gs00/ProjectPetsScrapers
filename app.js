@@ -52,7 +52,24 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}))
+let helpers = require('./utils/helpers/helper')
+// Create `ExpressHandlebars` instance with a default layout.
+let hbs = exphbs.create({
+    defaultLayout: 'main',
+    helpers: {
+        toUpperCase: function (msg) {return msg.toUpperCase()}
+    },
+
+    // Uses multiple partials dirs, templates in "shared/templates/" are shared
+    // with the client-side of the app (see below).
+    partialsDir: [
+        'shared/Templates/',
+        'views/partials/'
+    ]
+})
+
+// Register 'hbs' as the view engine using its bound engine() function
+app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')
 
 app.use(function (req, res, next) {

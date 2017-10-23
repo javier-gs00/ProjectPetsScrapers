@@ -26,10 +26,10 @@ function findAll (cb) {
     })
 }
 
-function sort (query, category, order, callback) {
-    let sortOrder = (order > 0)? category : '-' + category
+function sort (query, sort, callback) {
+    // let sortOrder = (order > 0)? category : '-' + category
 
-    MedModel.find({ name: new RegExp(query, 'i') }).sort(sortOrder).exec(
+    MedModel.find({ name: new RegExp(query, 'i') }).sort(sort).exec(
         callback
     )
 }

@@ -1,6 +1,25 @@
 {{> searchform}}
 <br />
 {{#if results}}
-    <p>Mostrando resultados para: <strong>{{query}}</strong></p>
+    <p>Mostrando resultados para: {{query}}</p>
+<script>
+    $(function () {
+        $('#nombre').change(function () {
+            this.form.submit()
+        })
+    })
+
+    $(function () {
+        $('#tienda').change(function () {
+            this.form.submit()
+        })
+    })
+
+    $(function () {
+        $('#precio').change(function () {
+            this.form.submit()
+        })
+    })
+</script>
 {{/if}}
 {{> results}}
