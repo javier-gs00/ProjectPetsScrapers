@@ -2,8 +2,8 @@ const save = require('../../../utils/webscrapers/utils/save_to_db.js').save
 const fs = require('fs')
 
 // -------------- IMPORT SCRAPERS --------------
-const noi = require('../../../utils/webscrapers/scrapers/noi.js'),
-        daymascotas = require('../../../utils/webscrapers/scrapers/daymascotas.js')
+const noi = require('../../../utils/webscrapers/scrapers/noi.js')
+const daymascotas = require('../../../utils/webscrapers/scrapers/daymascotas.js')
 
 module.exports = function (req, res) {
 

@@ -52,6 +52,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+// Require helpers for express handlebars
 let helpers = require('./utils/helpers/helper')
 // Create `ExpressHandlebars` instance with a default layout.
 let hbs = exphbs.create({
