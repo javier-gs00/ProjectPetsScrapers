@@ -36,13 +36,25 @@ module.exports = function (req, res) {
 
     console.log(req.body)
     if (req.body.deleteMeds === 'noi') {
-        res.render('scrapers', {
-            success: true
+        let counter = 0
+
+        medicine.deleteMany('store', 'Noi', function (err, DeleteWriteOpResultObject) {
+            console.log('Deleted document(s): ' + DeleteWriteOpResultObject.deletedCount)
+            counter = DeleteWriteOpResultObject.deletedCount
+
+            if (err) {
+                console.error(err)
+            } else {
+                res.render('scrapers', {
+                    delete: true,
+                    counter: counter
+                })
+            }
         })
     }
     if (req.body.executeMeds === 'noi') {
         noi.scrapercb(function (err, data) {
-            saveObjectToDB(data, function (err, counter) {
+            saveObjectToDB(data, 'Medicine', 'Brand', 'Noi', function (err, counter) {
                 if (err) {
                     console.error(err)
                     res.render('scrapers', {
@@ -51,7 +63,8 @@ module.exports = function (req, res) {
                 } else {
                     console.log(counter + ' documents saved to the Meds collection')
                     res.render('scrapers', {
-                        success: true
+                        success: true,
+                        counter: counter
                     })
                 }
             })

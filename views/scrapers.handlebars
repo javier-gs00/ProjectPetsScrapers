@@ -1,11 +1,12 @@
 {{#if success}}
   <div class="alert alert-success">
-    Scraper ejecutado con exito
+    Scraper ejecutado con exito. Se han guardado {{counter}} documentos en la DB.
   </div>
-{{!-- {{else}}
-  <div class="alert alert-danger">
-    La ejecución del scraper fallo
-  </div> --}}
+{{/if}}
+{{#if delete}}
+  <div class="alert alert-success">
+    Se han borrado {{counter}} documento(s) de la DB.
+  </div>
 {{/if}}
 
 <form action="/admin/scrapers/" method="POST">
