@@ -13,7 +13,7 @@ let MedSchema = new Schema({
     store: String,
 })
 
-MedModel = mongoose.model('meds', MedSchema)
+const MedModel = mongoose.model('meds', MedSchema)
 
 function Medicine (name, price, link, category, brand, image, store) {
     this.name = name;
@@ -37,71 +37,34 @@ function findAll (cb) {
     })
 }
 
+// Sort results by category and order, wich is given in the 'sort' parameter
+// 'sort' is composed of a category and a + or - for order. e.g: 'name' or '-name'
 function sort (query, sort, callback) {
     MedModel.find({ name: new RegExp(query, 'i') }).sort(sort).exec(
         callback
     )
 }
 
-// Save scraped object to MongoDB
-function saveObjectToDb (object, callback) {
-    let counter = 0
-
-    object.forEach(function(element) {
-        let medDocument = new MedModel ({
-            name: element.name,
-            price: element.price,
-            href: element.link,
-            category: element.category,
-            brand: element.brand,
-            image_href: element.image,
-            store: element.store
+// Delete documents from the database
+function deleteMany (category, criteria, callback) {
+    if (category === 'name') {
+        MedModel.deleteMany({ name: criteria}, function (err, DeleteWriteOpResultObject) {
+            callback(err, DeleteWriteOpResultObject)
         })
-
-        medDocument.save(function (err, medDocument) {
-            if (err) console.error(err)
+    } else if (category === 'store') {
+        MedModel.deleteMany({ store: criteria}, function (err, DeleteWriteOpResultObject) {
+            callback(err, DeleteWriteOpResultObject)
         })
-
-        counter += 1  
-    })
-
-    callback(err, counter)
-}
-
-// Save scraped object to a JSON file
-function saveObjectToJSON (object, store, path, callback) {
-    let counter = 0
-    let medList = []
-
-    object.forEach(function (element) {
-        let med = new Medicine (
-            element.name,
-            element.link,
-            "Medicine",
-            "Brand",
-            element.image,
-            store
-        )
-
-        counter += 1
-        console.log(counter)
-        medList.push(med)
-    })
-
-    fs.writeFile(path, JSON.stringify(medList, null, 2), function (err) {
-        if (err) {
-            console.log(err)
-        } else {
-            console.log(store + ' medicine JSON file created')
-        }
-    })
+    } else {
+        console.log('Delete Err')
+    }
 }
 
 module.exports = {
+    MedModel,
     Medicine,
     find,
     findAll,
     sort,
-    saveObjectToDb,
-    saveObjectToJSON
+    deleteMany
 }

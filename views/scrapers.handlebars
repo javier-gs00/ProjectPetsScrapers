@@ -8,34 +8,58 @@
   </div> --}}
 {{/if}}
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Tienda</th>
-      <th>Comida</th>
-      <th>Medicamentos</th>
-      <th>Accesorios</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td><a href="www.daymascotas.cl">Daymascotas</a></td>
-      <td><button type="button" class="btn btn-secondary">Ejecutar</button></td>
-      <td><button type="button" class="btn btn-primary">Ejecutar</button></td>
-      <td><button type="button" class="btn btn-secondary">Ejecutar</button></td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td><a href="www.noi.la">Noi</a></td>
-      <td><button type="button" class="btn btn-secondary">Ejecutar</button></td>
-      <td><button type="button" class="btn btn-primary">Ejecutar</button></td>
-      <td><button type="button" class="btn btn-secondary">Ejecutar</button></td>
-    </tr>
-  </tbody>
-</table>
+<form action="/admin/scrapers/" method="POST"></form>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Tienda</th>
+        <th>Comida</th>
+        <th>Medicamentos</th>
+        <th>Accesorios</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td><a href="www.daymascotas.cl">Daymascotas</a></td>
+        <td><input type="input" class="btn btn-secondary" value="Ejecutar"></input></td>
+        <td><input type="input" class="btn btn-primary" value="Ejecutar"></input></td>
+        <td><input type="input" class="btn btn-secondary" value="Ejecutar"></input></td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td><a href="www.noi.la">Noi</a></td>
+        <td><input type="input" class="btn btn-secondary" value="Ejecutar"></input></td>
+        <td><input type="submit" class="btn btn-primary" id="noiExecuteMeds" value="Ejecutar"></input>
+            <input type="submit" class="btn btn-danger" id="noiDeleteMeds" name="noiDeleteMeds" value="Borrar"></input></td>
+        <td><input type="input" class="btn btn-secondary" value="Ejecutar"></input></td>
+      </tr>
+    </tbody>
+  </table>
 
-<form action="/admin/scrapers/" method="POST">
-  <button type="submit" class="btn btn-primary">Ejecutar Todos</button>
+  <div class="col">
+    <input type="submit" class="btn btn-primary" value="Ejecutar Todos"></input>
+  </div>
+  <br />
+  <div class="col">
+    <input type="submit" class="btn btn-danger" value="Borrar Todo"></input>
+  </div> 
 </form>
+{{!-- <script>
+
+  {{!--                       Noi                       --}}
+  $(function () {
+    $('#noiExecuteMeds').click(function () {
+      alert('btn click')
+      this.form.submit()
+    })
+  })
+  $(function (){
+    $('#noiDeleteMeds').click(function () {
+        this.form.submit()
+    })
+  })
+
+
+</script> --}}
