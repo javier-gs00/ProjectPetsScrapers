@@ -1,11 +1,16 @@
-{{#if success}}
+{{#if executeMeds}}
   <div class="alert alert-success">
     Scraper ejecutado con exito. Se han guardado {{counter}} documentos en la DB.
   </div>
 {{/if}}
-{{#if delete}}
+{{#if deleteMeds}}
   <div class="alert alert-success">
     Se han borrado {{counter}} documento(s) de la DB.
+  </div>
+{{/if}}
+{{#if error}}
+  <div class="alert alert-danger">
+    Ha ocurrido un error.
   </div>
 {{/if}}
 
@@ -25,8 +30,8 @@
         <th scope="row">1</th>
         <td><a href="www.daymascotas.cl">Daymascotas</a></td>
         <td><button type="button" class="btn btn-secondary" value="Ejecutar">Ejecutar</button></td>
-        <td><button type="button" class="btn btn-primary" name="executeMeds" value="daymascotas">Ejecutar</button>
-            <button type="button" class="btn btn-danger" name="deleteMeds" value="daymascotas">Borrar</button></td>
+        <td><button type="submit" class="btn btn-primary" name="executeMeds" value="daymascotas" onclick="submit(this)">Ejecutar</button>
+            <button type="submit" class="btn btn-danger" name="deleteMeds" value="daymascotas">Borrar</button></td>
         <td><button type="button" class="btn btn-secondary" value="Ejecutar">Ejecutar</button></td>
       </tr>
       <tr>
@@ -49,8 +54,6 @@
   </div> 
 </form>
 <script>
-
-  {{!--                       Noi                       --}}
   $(function () {
     $('[name=executeMeds]').click(function () {
       this.form.submit()
@@ -58,9 +61,7 @@
   })
   $(function (){
     $('[name=deleteMeds]').click(function () {
-        this.form.submit()
+      this.form.submit()
     })
   })
-
-
 </script>

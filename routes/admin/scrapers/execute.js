@@ -7,77 +7,63 @@ const noi = require('../../../utils/webscrapers/scrapers/noi.js')
 const daymascotas = require('../../../utils/webscrapers/scrapers/daymascotas.js')
 
 module.exports = function (req, res) {
-    function render (type, err, counter) {
-        if (type === 'execute') {
-            if (err) {
-                console.error(err)
-                res.render('scrapers', {
-                    success: false
-                })
-            } else {
-                console.log(counter + ' documents saved to the Meds collection')
-                res.render('scrapers', {
-                    success: true,
-                    counter: counter
-                })
-            }
-        } else if (type === 'delete') {
-            if (err) {
-                console.error(err)
-                res.render('scrapers', {
-                    delete: false
-                })
-            } else {
-                res.render('scrapers', {
-                    delete: true,
-                    counter: counter
-                })
-            }
-        }
-
-    }
-
-    console.log(req.body)
-    switch (req.body.deleteMeds) {
-        case 'noi':
-            let counter = 0
-        
-            medicine.deleteMany('store', 'Noi', function (err, DeleteWriteOpResultObject) {
-                console.log('Deleted document(s): ' + DeleteWriteOpResultObject.deletedCount)
-                counter = DeleteWriteOpResultObject.deletedCount
-
-                render('delete', err, counter)
+    function renderMeds (err, type, counter) {
+        if (err) {
+            console.log(err)
+            return res.render('scrapers', {
+                error: true
             })
-        default:
+        } else if (type === 'execute') {
+            console.log(counter + ' documents saved to the Meds collection')
+            return res.render('scrapers', {
+                executeMeds: true,
+                counter: counter
+            })
+        } else if (type === 'delete') {
+            console.log(counter + ' documents deleted from the Meds collection')
+            return res.render('scrapers', {
+                deleteMeds: true,
+                counter: counter
+            })
+        } else {
+            return res.redirect('/admin/scrapers')
+        }
+    }
+    let deleteMeds = req.body.deleteMeds
+    let executeMeds = req.body.executeMeds
+
+    switch (deleteMeds) {
+        case "daymascotas":      
+            medicine.deleteMany('store', 'Day Mascotas', function (err, DeleteWriteOpResultObject) {
+                renderMeds(err, 'delete', DeleteWriteOpResultObject.deletedCount)
+            })
+            // medicine.deleteMany('name', 'Bravecto 10 a 20kg', function (err, DeleteWriteOpResultObject) {
+            //     renderMeds(err, 'delete', DeleteWriteOpResultObject.deletedCount)
+            // })
+            break;
+        case "noi":
+            medicine.deleteMany('store', 'Noi', function (err, DeleteWriteOpResultObject) {
+                renderMeds(err, 'delete', DeleteWriteOpResultObject.deletedCount)
+            })
+            break;
     }
 
     switch (req.body.executeMeds) {
         case 'daymascotas':
             daymascotas.scrappercb(function (err, data) {
                 saveObjectToDB(data, 'Medicine', 'Brand', 'Day Mascotas', function (err, counter) {
-                    render('execute', err, counter)
+                    renderMeds(err, 'execute', counter)
                 })
             })
             break;
         case 'noi':
             noi.scrapercb(function (err, data) {
                 saveObjectToDB(data, 'Medicine', 'Brand', 'Noi', function (err, counter) {
-                    render('execute', err, counter)
+                    renderMeds(err, 'execute', counter)
                 })
             })
             break;
-        default:
-            res.render('scrapers', {
-                success: false
-            })
     }
-    // scraperExec(function (err, counter) {
-    //     console.log('counter is ' + counter)
-    //     res.render('scrapers', {
-    //         success: true
-    //     })
-    // })
-
 
     // function scraperExec (callback) {
     //     let noiScraper = noi.scraper()
