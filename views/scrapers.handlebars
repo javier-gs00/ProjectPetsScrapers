@@ -8,7 +8,7 @@
   </div> --}}
 {{/if}}
 
-<form action="/admin/scrapers/" method="POST"></form>
+<form action="/admin/scrapers/" method="POST">
   <table class="table table-hover">
     <thead>
       <tr>
@@ -23,43 +23,42 @@
       <tr>
         <th scope="row">1</th>
         <td><a href="www.daymascotas.cl">Daymascotas</a></td>
-        <td><input type="input" class="btn btn-secondary" value="Ejecutar"></input></td>
-        <td><input type="input" class="btn btn-primary" value="Ejecutar"></input></td>
-        <td><input type="input" class="btn btn-secondary" value="Ejecutar"></input></td>
+        <td><button type="button" class="btn btn-secondary" value="Ejecutar">Ejecutar</button></td>
+        <td><button type="button" class="btn btn-primary" value="Ejecutar">Ejecutar</button></td>
+        <td><button type="button" class="btn btn-secondary" value="Ejecutar">Ejecutar</button></td>
       </tr>
       <tr>
         <th scope="row">2</th>
         <td><a href="www.noi.la">Noi</a></td>
-        <td><input type="input" class="btn btn-secondary" value="Ejecutar"></input></td>
-        <td><input type="submit" class="btn btn-primary" id="noiExecuteMeds" value="Ejecutar"></input>
-            <input type="submit" class="btn btn-danger" id="noiDeleteMeds" name="noiDeleteMeds" value="Borrar"></input></td>
-        <td><input type="input" class="btn btn-secondary" value="Ejecutar"></input></td>
+        <td><button type="button" class="btn btn-secondary" value="Ejecutar">Ejecutar</button></td>
+        <td><button type="submit" class="btn btn-primary" name="executeMeds" value="noi">Ejecutar</button>
+            <button type="submit" class="btn btn-danger" name="deleteMeds" value="noi">Borrar</button></td>
+        <td><button type="button" class="btn btn-secondary" value="Ejecutar">Ejecutar</button></td>
       </tr>
     </tbody>
   </table>
 
   <div class="col">
-    <input type="submit" class="btn btn-primary" value="Ejecutar Todos"></input>
+    <button type="submit" class="btn btn-primary" value="Ejecutar Todos">Ejecutar Todos</button>
   </div>
   <br />
   <div class="col">
-    <input type="submit" class="btn btn-danger" value="Borrar Todo"></input>
+    <button type="submit" class="btn btn-danger" value="Borrar Todo">Borrar Todos</button>
   </div> 
 </form>
-{{!-- <script>
+<script>
 
   {{!--                       Noi                       --}}
   $(function () {
-    $('#noiExecuteMeds').click(function () {
-      alert('btn click')
+    $('[name=noiExecuteMeds]').click(function () {
       this.form.submit()
     })
   })
   $(function (){
-    $('#noiDeleteMeds').click(function () {
+    $('[name=noiDeleteMeds]').click(function () {
         this.form.submit()
     })
   })
 
 
-</script> --}}
+</script>

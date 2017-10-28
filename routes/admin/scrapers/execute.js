@@ -34,11 +34,27 @@ module.exports = function (req, res) {
     //     success: true
     // })
 
-    console.log('req.body')
-    if (req.body.id === 'noiDeleteMeds') {
-        console.log('message received')
+    console.log(req.body)
+    if (req.body.deleteMeds === 'noi') {
         res.render('scrapers', {
             success: true
+        })
+    }
+    if (req.body.executeMeds === 'noi') {
+        noi.scrapercb(function (err, data) {
+            saveObjectToDB(data, function (err, counter) {
+                if (err) {
+                    console.error(err)
+                    res.render('scrapers', {
+                        success: false
+                    })
+                } else {
+                    console.log(counter + ' documents saved to the Meds collection')
+                    res.render('scrapers', {
+                        success: true
+                    })
+                }
+            })
         })
     }
     // scraperExec(function (err, counter) {
