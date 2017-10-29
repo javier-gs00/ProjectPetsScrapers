@@ -10,6 +10,12 @@ let UserSchema = mongoose.Schema({
 
 let UserModel = mongoose.model('users', UserSchema)
 
+function findAll (callback) {
+    UserModel.find({}, function (err, user) {
+        callback(err, user)
+    })
+}
+
 function findByUsername (data, cb) {
     UserModel.findOne({ username: data }, function (err, user) {
         cb(err, user)
@@ -45,9 +51,33 @@ function save (username, password, email, cb) {
     })
 }
 
+function remove (id, callback) {
+    UserModel.findById(id, function (err, user) {
+        let removedName = (user.username)? user.username : 'NA'
+        let removedEmail = (user.email)? user.email : 'NA'
+        let removedId = id
+
+        UserModel.remove({_id: id}, function (err, obj) {
+            let removedUser = {
+                username: removedName,
+                email: removedEmail,
+                id: removedId,
+                count: obj.result.ok 
+            }
+
+            callback(err, removedUser)
+        })
+    })
+    // UserModel.remove({ _id: id }, function (err, result) {
+    //     callback(err, result)
+    // })
+}
+
 module.exports = {
+    findAll,
     findByUsername,
     findByEmail,
     findById,
-    save
+    save,
+    remove
 }
