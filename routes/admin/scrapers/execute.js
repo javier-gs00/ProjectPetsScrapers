@@ -65,6 +65,20 @@ module.exports = function (req, res) {
             break;
     }
 
+    console.log(req.body.execute)
+    if (req.body.execute === 'toJson') {
+        // dbToJson('noi', res.locals.dirname, 'noi.json', function (err) {
+        //     res.render('scrapers', {
+        //         executeMeds: true
+        //     })
+        // })
+        medicine.dbToJson('noi', res.locals.dirname, 'noi.json', function (err) {
+            res.render('scrapers', {
+                executeMeds: true
+            })
+        })
+    }
+
     // function scraperExec (callback) {
     //     let noiScraper = noi.scraper()
     //     let daymascotasScraper = daymascotas.scrapper()

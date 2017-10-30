@@ -50,6 +50,9 @@
   </div>
   <br />
   <div class="col">
+    <button type="submit" class="btn btn-danger" name="execute" value="toJson">Generar JSON</button>
+  </div> 
+  <div class="col">
     <button type="submit" class="btn btn-danger" value="Borrar Todo">Borrar Todos</button>
   </div> 
 </form>
@@ -61,6 +64,11 @@
   })
   $(function (){
     $('[name=deleteMeds]').click(function () {
+      this.form.submit()
+    })
+  })
+  $(function (){
+    $('[name=execute]').click(function () {
       this.form.submit()
     })
   })
