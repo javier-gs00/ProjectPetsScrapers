@@ -61,7 +61,7 @@ function deleteMany (category, criteria, callback) {
 }
 
 // Export all scraped med data from the DB to a JSON file
-function dbToJson (store, path, filename, callback) {
+function dbToJson (path, filename, callback) {
     findAll(function (err, results) {
         let resJson = JSON.stringify(results, null, 2)
 

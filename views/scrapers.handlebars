@@ -5,7 +5,12 @@
 {{/if}}
 {{#if deleteMeds}}
   <div class="alert alert-success">
-    Se han borrado {{counter}} documento(s) de la DB.
+    Se han borrado {{counter}} documento(s) de la BD.
+  </div>
+{{/if}}
+{{#if dbToJson}}
+  <div class="alert alert-success">
+    Se ha generado el archivo .JSON con los datos de la BD exitosamente.
   </div>
 {{/if}}
 {{#if error}}
@@ -52,6 +57,7 @@
   <div class="col">
     <button type="submit" class="btn btn-danger" name="execute" value="toJson">Generar JSON</button>
   </div> 
+  <br />
   <div class="col">
     <button type="submit" class="btn btn-danger" value="Borrar Todo">Borrar Todos</button>
   </div> 
