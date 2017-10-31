@@ -121,6 +121,7 @@ app.use(function (req, res, next) {
     next(err)
 })
 
+// module.exports = app
 app.listen(process.env.PORT, function () {
     console.log('App listening on port 3000')
 })

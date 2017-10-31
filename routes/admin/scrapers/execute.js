@@ -56,14 +56,16 @@ module.exports = function (req, res) {
     }
 
     switch (req.body.executeMeds) {
+        case 'all':
+            scraperExec(function (err, docCounter) {
+                renderMeds(err, 'execute', docCounter)
+            })
+            break;
         case 'daymascotas':
             let t0 = time()
-            // const t0 = process.hrtime()
             daymascotas.scrappercb(function (err, data) {
                 let t1 = time(t0)
                 console.log('Day Mascotas scraper took: ' + t1 + ' miliseconds.')
-                // const t1 = process.hrtime(t0)
-                // console.log('Day Mascotas scraper took: ' + (t1[0]*1000 + (t1[1]/1000000)) + ' miliseconds.')
                 const t2 = process.hrtime()
                 saveObjectToDB(data, 'Medicine', 'Brand', 'Day Mascotas', function (err, counter) {
                     const t3 = process.hrtime(t2)
@@ -95,40 +97,95 @@ module.exports = function (req, res) {
         })
     }
 
-    // function scraperExec (callback) {
-    //     let noiScraper = noi.scraper()
-    //     let daymascotasScraper = daymascotas.scrapper()
-    //     let execCounter = 0
+    function scraperExec (callback) {
+        // let noiScraper = noi.scraper()
+        // let daymascotasScraper = daymascotas.scrapper()
+        // let docCounter = 0
 
-    //     noiScraper.then(function (medList) {
-    //         save(medList, function (err, counter) {
-    //             console.log('Noi scraper saved ' + counter + ' documents in the meds collection')
-    //             execCounter += 1
-    //         })
-    //     })
+        // let promise1 = new Promise (function (resolve, reject) {
+        //     let n = 0
+        //     for (let i = 0; i < 100; i++) {
+        //         n = n + i
+        //         if (i == 99) {
+        //             console.log('----- n is: ' + n)
+        //             resolve(n)
+        //         }
+        //     }
+        // })
+
+        let testPromise = function () {
+            return new Promise (function (resolve, reject) {
+                resolve(40)
+            })
+        }
+
+        let testPromise2 = function () {
+            return new Promise (function (resolve, reject) {
+                resolve(50)
+            })
+        }
+        // let promise2 = new Promise (function (resolve, reject) {
+        //     let m = 0
+        //     for (let i = 0; i < 200; i++) {
+        //         m = m + i
+        //         if (i == 199) {
+        //             console.log('----- m is: ' + m)
+        //             resolve(m)
+        //         }
+        //     }
+        // })
+
+        let resolvedPromisesArray = [
+            testPromise(),
+            testPromise2()
+        ]
+
+        Promise.all(resolvedPromisesArray).then(function (values) {
+            console.log(values)
+            console.log(values.length)
+            let total = 0
+            for (let i = 0; i < values.length; i++) {
+                total += values[i]
+            }
+            callback(null, total)
+        })
+
+        // Promise.all([promise1, promise2]).then(function(values){
+        //     console.log(values)
+        //     let total = values[0] + values[1]
+        //     callback(null, total)
+        // })
+
+        // noiScraper.then(function (medList) {
+        //     save(medList, function (err, counter) {
+        //         console.log('Noi scraper saved ' + counter + ' documents in the meds collection')
+        //         docCounter = docCounter + counter
+        //         execCounter += 1
+        //     })
+        // })
     
-    //     daymascotasScraper.then(function (medList) {
-    //         save(medList, function (err, counter) {
-    //             console.log('Day Mascotas scraper saved ' + counter + ' documents in the meds collection')
-    //             execCounter += 1
-    //             callback(null, execCounter)
-    //         })
-    //     })
+        // daymascotasScraper.then(function (medList) {
+        //     save(medList, function (err, counter) {
+        //         console.log('Day Mascotas scraper saved ' + counter + ' documents in the meds collection')
+        //         docCounter = docCounter + counter
+        //         execCounter += 1
+        //     })
+        // })
     
-    //     noiScraper.catch(function (err) {
-    //         console.log('Noi ERR: ' + err)
-    //         res.render('scrapers', {
-    //             success: false
-    //         })
-    //     })
+        // noiScraper.catch(function (err) {
+        //     console.log('Noi ERR: ' + err)
+        //     res.render('scrapers', {
+        //         success: false
+        //     })
+        // })
     
-    //     daymascotasScraper.catch(function (err) {
-    //         console.log('Day Mascotas ERR: ' + err)
-    //         res.render('scrapers', {
-    //             success: false
-    //         })
-    //     })
-    // }
+        // daymascotasScraper.catch(function (err) {
+        //     console.log('Day Mascotas ERR: ' + err)
+        //     res.render('scrapers', {
+        //         success: false
+        //     })
+        // })
+    }
 
     // scraperExec(function (err, execCounter) {
     //     console.log('counter is ' + execCounter)
