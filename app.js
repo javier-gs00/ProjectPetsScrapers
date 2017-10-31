@@ -81,7 +81,7 @@ app.use(function (req, res, next) {
 })
 
 app.use(function (req, res, next) {
-    // pass __dirname for saving and loading files when using the web scrapers
+    // pass __dirname for ease saving and loading files when using the web scrapers
     let dirname = __dirname
     res.locals.dirname = dirname
     next()
