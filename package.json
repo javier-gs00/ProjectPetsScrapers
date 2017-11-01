@@ -2,10 +2,10 @@
   "name": "xray",
   "version": "1.0.0",
   "description": "web scraping with nodejs",
-  "main": "app.js",
+  "main": "cluster.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app"
+    "start": "node cluster"
   },
   "author": "jags",
   "license": "ISC",
