@@ -11,8 +11,8 @@ const Users = require('../utils/dbmodels/user.js')
 
 // Landing page
 routes.get('/', function (req, res) {
-    console.log(req.user)
-    console.log(req.isAuthenticated())
+    // console.log(req.user)
+    // console.log(req.isAuthenticated())
     res.render('home')
 })
 
@@ -54,7 +54,7 @@ function authenticationMiddleware () {
 		console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
 
 	    if (req.isAuthenticated()) return next();
-	    res.redirect('/usuarios/login')
+	    res.redirect('/admin')
 	}
 }
 

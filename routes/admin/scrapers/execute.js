@@ -99,8 +99,21 @@ module.exports = function (req, res) {
 
     switch (executeMeds) {
         case 'all':
-            execAll(function (err, docCounter) {
-                renderMeds(err, 'execute', docCounter)
+            medicine.findAll(function (err, meds) {
+                // If there are documents on the db first erase them and the execute the scraper
+                if (meds.length !== 0) {
+                    medicine.deleteMany('store', '', function (err, DeleteWriteOpResultObject) {
+                        console.log('Deleted ' + DeleteWriteOpResultObject.deletedCount + ' documents from the meds colleciton...')
+                        execAll(function (err, docCounter) {
+                            renderMeds(err, 'execute', docCounter)
+                        })  
+                    })
+                } else {
+                // If there are none documents just execute the scraper
+                    execAll(function (err, docCounter) {
+                        renderMeds(err, 'execute', docCounter)
+                    }) 
+                }
             })
             break;
         case 'daymascotas':
