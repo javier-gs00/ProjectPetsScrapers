@@ -7,8 +7,6 @@ let MedSchema = new Schema({
     name: String,
     price: String,
     href: String,
-    category: String,
-    brand: String,
     image_href: String,
     store: String,
 })
@@ -19,8 +17,6 @@ function Medicine (name, price, link, category, brand, image, store) {
     this.name = name;
     this.price = price;
     this.link = link;
-    this.category = 'Medicine';
-    this.brand = brand;
     this.image = image;
     this.store = store;
 }
