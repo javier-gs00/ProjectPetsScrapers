@@ -1,4 +1,4 @@
-const { saveObjectToDB, executeAndSaveToDB } = require('../../../utils/webscrapers/scrapers/scrapers_utils.js')
+const { saveObjectToDB, executeAndSaveToDB, JsonToObject } = require('../../../utils/webscrapers/scrapers/scrapers_utils.js')
 const fs = require('fs')
 const medicine = require('../../../utils/dbmodels/medicine.js')
 
@@ -85,6 +85,11 @@ module.exports = function (req, res) {
     let executeMeds = req.body.executeMeds
 
     switch (deleteMeds) {
+        case 'all':
+            medicine.deleteMany('store', '', function (err, DeleteWriteOpResultObject) {
+                renderMeds(err, 'delete', DeleteWriteOpResultObject.deletedCount)
+            })
+            break;
         case "daymascotas":      
             medicine.deleteMany('store', 'Day Mascotas', function (err, DeleteWriteOpResultObject) {
                 renderMeds(err, 'delete', DeleteWriteOpResultObject.deletedCount)
@@ -152,6 +157,17 @@ module.exports = function (req, res) {
             res.render('scrapers', {
                 dbToJson: true
             })
+        })
+    } else if (req.body.execute === 'loadJson') {
+        JsonToObject(res.locals.dirname, 'scraped_meds.json')
+        .then(function (obj) {
+            // console.log(obj)
+            saveObjectToDB(obj, 'No', function (err, counter) {
+                renderMeds(err, 'execute', counter)
+            })
+        })
+        .catch(function (err) {
+            renderMeds(err, '', 0)
         })
     }
 }
