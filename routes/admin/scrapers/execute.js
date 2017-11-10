@@ -1,5 +1,8 @@
-const { saveObjectToDB, executeAndSaveToDB, JsonToObject } = require('../../../utils/webscrapers/scrapers/scrapers_utils.js')
 const fs = require('fs')
+const formidable = require('formidable')
+
+// -------------- IMPORT MODELS --------------
+const { saveObjectToDB, executeAndSaveToDB, JsonToObject } = require('../../../utils/webscrapers/scrapers/scrapers_utils.js')
 const medicine = require('../../../utils/dbmodels/medicine.js')
 
 // -------------- IMPORT SCRAPERS --------------
@@ -7,6 +10,144 @@ const noi = require('../../../utils/webscrapers/scrapers/noi.js')
 const daymascotas = require('../../../utils/webscrapers/scrapers/daymascotas.js')
 
 module.exports = function (req, res) {
+    // create an incoming form object
+    let form = new formidable.IncomingForm()
+    
+    form.multiples = true
+    form.uploadDir = res.locals.dirname + '/uploads'
+    form.keepExtensions = true
+
+    form.on('error', function (err) {
+        renderMeds(err, '', 0)
+    })
+
+    form.on('fileBegin', function (name, file) {
+        if (file.name !== 'data.json') {
+            console.log(file.name)
+            // return renderMeds(null, 'execute', 0)
+        } else {
+            file.path = res.locals.dirname + '/uploads/' + file.name
+        }
+    })
+
+    form.parse(req, function (err, fields, files) {
+        if (err) return renderMeds(err, '', 0)
+        console.log('fields object is: ')
+        console.log(fields)
+
+        let deleteMeds = fields.deleteMeds
+        let executeMeds = fields.executeMeds
+        let execute = fields.execute
+
+        switch (deleteMeds) {
+            case 'all':
+                medicine.deleteMany('store', '', function (err, DeleteWriteOpResultObject) {
+                    renderMeds(err, 'delete', DeleteWriteOpResultObject.deletedCount)
+                })
+                break;
+            case "daymascotas":      
+                medicine.deleteMany('store', 'Day Mascotas', function (err, DeleteWriteOpResultObject) {
+                    renderMeds(err, 'delete', DeleteWriteOpResultObject.deletedCount)
+                })
+                break;
+            case "noi":
+                medicine.deleteMany('store', 'Noi', function (err, DeleteWriteOpResultObject) {
+                    renderMeds(err, 'delete', DeleteWriteOpResultObject.deletedCount)
+                })
+                break;
+        }
+
+        switch (executeMeds) {
+            case 'all':
+                medicine.findAll(function (err, meds) {
+                    // If there are documents on the db first erase them and then execute the scraper
+                    if (meds.length !== 0) {
+                        medicine.deleteMany('store', '', function (err, DeleteWriteOpResultObject) {
+                            console.log('Deleted ' + DeleteWriteOpResultObject.deletedCount + ' documents from the meds colleciton...')
+                            execAll(function (err, docCounter) {
+                                renderMeds(err, 'execute', docCounter)
+                            })  
+                        })
+                    } else {
+                    // If there are none documents just execute the scraper
+                        execAll(function (err, docCounter) {
+                            renderMeds(err, 'execute', docCounter)
+                        }) 
+                    }
+                })
+                break;
+            case 'daymascotas':
+                let t0 = time()
+                daymascotas.scraper()
+                .then(function (data) {
+                    return saveObjectToDB(data, 'Day Mascotas')
+                }).then(function (counter) {
+                    return renderMeds(err, 'execute', counter)
+                }).catch(function (err) {
+                    return renderMeds(err, '', 0)
+                })
+                break;
+            case 'noi':
+                let start = time()
+                noi.scraper()
+                .then(function (data) {
+                    // let duration = time(start)
+                    // console.log('Day Mascotas scraper took: ' + duration + ' miliseconds.')
+                    // let startdb = time()
+                    return saveObjectToDB(data, 'Noi')
+                }).then(function (counter) {
+                    // let durationdb = time(startdb)
+                    // console.log('Saving Day Mascotas data to the db took: ' + durationdb + ' miliseconds.')
+                    return renderMeds(err, 'execute', counter)
+                }).catch(function (err) {
+                    return renderMeds(err, '', 0)
+                })
+                break;
+        }
+
+        switch (execute) {
+            case 'toJson':
+                medicine.dbToJson(res.locals.dirname, 'scraped_meds.json', function (err) {
+                    res.render('scrapers', {
+                        dbToJson: true
+                    })
+                })
+                break;
+            case 'loadJson':
+                JsonToObject(res.locals.dirname + '/utils/webscrapers/scrapers/scrapers_json_files/', 'scraped_meds.json')
+                .then(function (obj) {
+                    // console.log(obj)
+                    return saveObjectToDB(obj, '')
+                }).then(function (counter) {
+                    console.log('--------------- loadJson saveObjToDb Counter: ---------------')
+                    console.log(counter)
+                    renderMeds(err, 'execute', counter)
+                })
+                .catch(function (err) {
+                    console.log('--------------- loadJson JsonToObj Err: ---------------')
+                    console.log(err)
+                    renderMeds(err, '', 0)
+                })
+                break;
+            case 'uploadJson':
+                JsonToObject(res.locals.dirname + '/uploads/', 'data.json')
+                .then(function (obj) {
+                    // console.log(obj)
+                    return saveObjectToDB(obj, '')
+                }).then(function (counter) {
+                    console.log('--------------- uploadJson saveObjToDb Counter: ---------------')
+                    console.log(counter)
+                    renderMeds(err, 'execute', counter)
+                })
+                .catch(function (err) {
+                    console.log('--------------- uploadJson JsonToObj Err: ---------------')
+                    console.log(err)
+                    renderMeds(err, '', 0)
+                })
+                break;
+        }
+    })
+
     // Render the view and send the corresponding messages depending on the action executed
     function renderMeds (err, type, counter) {
         if (err) {
@@ -26,8 +167,6 @@ module.exports = function (req, res) {
                 deleteMeds: true,
                 counter: counter
             })
-        } else {
-            return res.redirect('/admin/scrapers')
         }
     }
 
@@ -78,96 +217,6 @@ module.exports = function (req, res) {
         }).catch(function (err) {
             console.error(err)
             callback(err)
-        })
-    }
-
-    let deleteMeds = req.body.deleteMeds
-    let executeMeds = req.body.executeMeds
-
-    switch (deleteMeds) {
-        case 'all':
-            medicine.deleteMany('store', '', function (err, DeleteWriteOpResultObject) {
-                renderMeds(err, 'delete', DeleteWriteOpResultObject.deletedCount)
-            })
-            break;
-        case "daymascotas":      
-            medicine.deleteMany('store', 'Day Mascotas', function (err, DeleteWriteOpResultObject) {
-                renderMeds(err, 'delete', DeleteWriteOpResultObject.deletedCount)
-            })
-            break;
-        case "noi":
-            medicine.deleteMany('store', 'Noi', function (err, DeleteWriteOpResultObject) {
-                renderMeds(err, 'delete', DeleteWriteOpResultObject.deletedCount)
-            })
-            break;
-    }
-
-    switch (executeMeds) {
-        case 'all':
-            medicine.findAll(function (err, meds) {
-                // If there are documents on the db first erase them and the execute the scraper
-                if (meds.length !== 0) {
-                    medicine.deleteMany('store', '', function (err, DeleteWriteOpResultObject) {
-                        console.log('Deleted ' + DeleteWriteOpResultObject.deletedCount + ' documents from the meds colleciton...')
-                        execAll(function (err, docCounter) {
-                            renderMeds(err, 'execute', docCounter)
-                        })  
-                    })
-                } else {
-                // If there are none documents just execute the scraper
-                    execAll(function (err, docCounter) {
-                        renderMeds(err, 'execute', docCounter)
-                    }) 
-                }
-            })
-            break;
-        case 'daymascotas':
-            let t0 = time()
-            daymascotas.scrapercb(function (err, data) {
-                let t1 = time(t0)
-                console.log('Day Mascotas scraper took: ' + t1 + ' miliseconds.')
-                const t2 = process.hrtime()
-                saveObjectToDB(data, 'Medicine', 'Brand', 'Day Mascotas', function (err, counter) {
-                    const t3 = process.hrtime(t2)
-                    console.log('Saving Day Mascotas data to the DB took: ' + (t3[0]*1000 + (t3[1]/1000000)) + ' miliseconds.')
-                    renderMeds(err, 'execute', counter)
-                })
-            })
-            // executeAndSaveToDB('Day Mascotas', daymascotas.scrapercb, function (err, counter) {
-            //     renderMeds(err, 'execute', counter)
-            // })
-            break;
-        case 'noi':
-            let start = time()
-            noi.scrapercb(function (err, data) {
-                let duration = time(start)
-                console.log('Day Mascotas scraper took: ' + duration + ' miliseconds.')
-                let startdb = time()
-                saveObjectToDB(data, 'Medicine', 'Brand', 'Noi', function (err, counter) {
-                    let durationdb = time(startdb)
-                    console.log('Saving Day Mascotas data to the db took: ' + durationdb + ' miliseconds.')
-                    renderMeds(err, 'execute', counter)
-                })
-            })
-            break;
-    }
-
-    if (req.body.execute === 'toJson') {
-        medicine.dbToJson(res.locals.dirname, 'scraped_meds.json', function (err) {
-            res.render('scrapers', {
-                dbToJson: true
-            })
-        })
-    } else if (req.body.execute === 'loadJson') {
-        JsonToObject(res.locals.dirname, 'scraped_meds.json')
-        .then(function (obj) {
-            // console.log(obj)
-            saveObjectToDB(obj, 'No', function (err, counter) {
-                renderMeds(err, 'execute', counter)
-            })
-        })
-        .catch(function (err) {
-            renderMeds(err, '', 0)
         })
     }
 }

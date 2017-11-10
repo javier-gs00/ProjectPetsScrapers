@@ -19,7 +19,7 @@
   </div>
 {{/if}}
 
-<form action="/admin/scrapers/" method="POST">
+<form action="/admin/scrapers/" method="POST" enctype="multipart/form-data">
   <table class="table table-hover">
     <thead>
       <tr>
@@ -63,23 +63,66 @@
   </div> 
   <br />
   <div class="col">
+    <input type="file" class="btn btn-secondary" name="uploadFile" multiple="multiple">
+    <input type="submit" class="btn btn-secondary" name="execute" value="uploadJson">
+  </div> 
+  <br />
+  <div class="col">
     <button type="submit" class="btn btn-danger" name="deleteMeds" value="all">Borrar Todos</button>
   </div> 
 </form>
+
 <script>
   $(function () {
     $('[name=executeMeds]').click(function () {
       this.form.submit()
     })
-  })
-  $(function (){
+
     $('[name=deleteMeds]').click(function () {
       this.form.submit()
     })
-  })
-  $(function (){
+
     $('[name=execute]').click(function () {
       this.form.submit()
     })
+{{!-- 
+    $('[name=upload]').on('click', function () {
+      $('[name=uploadFile]').click()
+    })
+
+    $('[name=uploadFile]').on('change', function () {
+      var files = $(this).get(0).files
+
+      if (files.length > 0) {
+        // One or more files selected, process the file upload
+
+        // Create a FormData object which will be sent as the data payload
+        // in the AJAX request
+        var formData = new FormData()
+
+        // loop through all the selected files
+        for (var i = 0; i < files.length; i++) {
+          var file = files[i]
+
+          // add the files to formData object for the data payload
+          formData.append('upload', file, file.name)
+        }
+
+        $.ajax({
+          url: '/admin/scrapers',
+          type: 'POST',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function (data) {
+            console.log('upload successful!\n' + data)
+          },
+          error: function (error) {
+            console.log("Err: " + error)
+          }
+        })
+      }
+    }) --}}
   })
+
 </script>

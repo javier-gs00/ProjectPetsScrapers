@@ -35,7 +35,7 @@ store.on('error', function (error) {
     assert.ok(false)
 })
 
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({extended: false}))
 app.use(methodOverride(function (req, res) {
     // look in urlencoded POST bodies and delete it
     let method = req.body._method
@@ -121,7 +121,7 @@ app.use(function (req, res, next) {
     next(err)
 })
 
-module.exports = app
-// app.listen(process.env.PORT, function () {
-//     console.log('App listening on port 3000')
-// })
+// module.exports = app
+app.listen(process.env.PORT, function () {
+    console.log('App listening on port 3000')
+})
