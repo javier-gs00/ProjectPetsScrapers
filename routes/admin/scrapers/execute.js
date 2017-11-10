@@ -13,6 +13,7 @@ module.exports = function (req, res) {
     // create an incoming form object
     let form = new formidable.IncomingForm()
     
+    // Set the form object to receive a multipart/form-data
     form.multiples = true
     form.uploadDir = res.locals.dirname + '/uploads'
     form.keepExtensions = true
@@ -23,21 +24,22 @@ module.exports = function (req, res) {
 
     form.on('fileBegin', function (name, file) {
         if (file.name !== 'data.json') {
-            console.log(file.name)
-            // return renderMeds(null, 'execute', 0)
+            console.log('File name uploaded must be data.json. Name of file uploaded is: ' + file.name)
         } else {
             file.path = res.locals.dirname + '/uploads/' + file.name
         }
     })
 
+    // Execute the switches after all fields and files are parsed
     form.parse(req, function (err, fields, files) {
         if (err) return renderMeds(err, '', 0)
-        console.log('fields object is: ')
-        console.log(fields)
 
         let deleteMeds = fields.deleteMeds
         let executeMeds = fields.executeMeds
         let execute = fields.execute
+
+        let startTimer
+        let endTimer
 
         switch (deleteMeds) {
             case 'all':
@@ -64,7 +66,10 @@ module.exports = function (req, res) {
                     if (meds.length !== 0) {
                         medicine.deleteMany('store', '', function (err, DeleteWriteOpResultObject) {
                             console.log('Deleted ' + DeleteWriteOpResultObject.deletedCount + ' documents from the meds colleciton...')
+                            startTimer = timer()
                             execAll(function (err, docCounter) {
+                                endTimer = timer(startTimer)
+                                console.log('All meds scrapers completed in ' + endTimer + ' ms.')
                                 renderMeds(err, 'execute', docCounter)
                             })  
                         })
@@ -77,9 +82,11 @@ module.exports = function (req, res) {
                 })
                 break;
             case 'daymascotas':
-                let t0 = time()
+                startTimer = timer()
                 daymascotas.scraper()
                 .then(function (data) {
+                    endTimer = timer(startTimer)
+                    console.log('Day Mascotas meds scraper completed in ' + endTimer + ' ms.')
                     return saveObjectToDB(data, 'Day Mascotas')
                 }).then(function (counter) {
                     return renderMeds(err, 'execute', counter)
@@ -88,16 +95,13 @@ module.exports = function (req, res) {
                 })
                 break;
             case 'noi':
-                let start = time()
+                startTimer = timer()
                 noi.scraper()
                 .then(function (data) {
-                    // let duration = time(start)
-                    // console.log('Day Mascotas scraper took: ' + duration + ' miliseconds.')
-                    // let startdb = time()
+                    endTimer = timer(startTimer)
+                    console.log('Noi meds scraper completed in ' + endTimer + ' ms.')
                     return saveObjectToDB(data, 'Noi')
                 }).then(function (counter) {
-                    // let durationdb = time(startdb)
-                    // console.log('Saving Day Mascotas data to the db took: ' + durationdb + ' miliseconds.')
                     return renderMeds(err, 'execute', counter)
                 }).catch(function (err) {
                     return renderMeds(err, '', 0)
@@ -116,7 +120,6 @@ module.exports = function (req, res) {
             case 'loadJson':
                 JsonToObject(res.locals.dirname + '/utils/webscrapers/scrapers/scrapers_json_files/', 'scraped_meds.json')
                 .then(function (obj) {
-                    // console.log(obj)
                     return saveObjectToDB(obj, '')
                 }).then(function (counter) {
                     console.log('--------------- loadJson saveObjToDb Counter: ---------------')
@@ -171,7 +174,7 @@ module.exports = function (req, res) {
     }
 
     // Measure time in milliseconds from two points in the code
-    function time (t0) {
+    function timer (t0) {
         if (!t0) return process.hrtime()
 
         const t1 = process.hrtime(t0)
@@ -181,23 +184,38 @@ module.exports = function (req, res) {
 
     // Run all the scrapers with their promisified functions
     function execAll (callback) {
-        let t0 = time()
+        // let dayMascotasScraper = new Promise (function (resolve, reject) {
+        //     daymascotas.scraper().then(function (data) {
+        //         saveObjectToDB(data, 'Medicine', 'Brand', 'Day Mascotas', function (err, counter) {
+        //             resolve(counter)
+        //             reject(err)
+        //         })
+        //     })
+        // })
 
         let dayMascotasScraper = new Promise (function (resolve, reject) {
-            daymascotas.scraper().then(function (data) {
-                saveObjectToDB(data, 'Medicine', 'Brand', 'Day Mascotas', function (err, counter) {
-                    resolve(counter)
-                    reject(err)
-                })
+            daymascotas.scraper()
+            .then(function (data) {
+                return saveObjectToDB(data, 'Day Mascotas')
+            })
+            .then(function (counter) {
+                resolve(counter)
+            })
+            .catch(function (err) {
+                reject(err)
             })
         })
 
         let noiScraper = new Promise (function (resolve, reject) {
-            noi.scraper().then(function (data) {
-                saveObjectToDB(data, 'Medicine', 'Brand', 'Noi', function (err, counter) {
-                    resolve(counter)
-                    reject(err)
-                })
+            noi.scraper()
+            .then(function (data) {
+                return saveObjectToDB(data, 'Noi')
+            })
+            .then(function (counter) {
+                resolve(counter)
+            })
+            .catch(function (err) {
+                reject(err)
             })
         })
 
@@ -207,8 +225,6 @@ module.exports = function (req, res) {
         ]
 
         Promise.all(resolvedPromisesArray).then(function (values) {
-            let duration = time(t0)
-            console.log('Executing all the scrapers took: ' + duration + ' miliseconds.')
             let total = 0
             for (let i = 0; i < values.length; i++) {
                 total += values[i]
