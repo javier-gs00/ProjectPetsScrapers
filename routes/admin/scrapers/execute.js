@@ -1,8 +1,9 @@
 const fs = require('fs')
+const path = require('path')
 const formidable = require('formidable')
 
 // -------------- IMPORT MODELS --------------
-const { saveObjectToDB, executeAndSaveToDB, JsonToObject } = require('../../../utils/webscrapers/scrapers/scrapers_utils.js')
+const { saveObjectToDB, JsonToObject } = require('../../../utils/webscrapers/scrapers/scrapers_utils.js')
 const medicine = require('../../../utils/dbmodels/medicine.js')
 
 // -------------- IMPORT SCRAPERS --------------
@@ -15,7 +16,6 @@ module.exports = function (req, res) {
     
     // Set the form object to receive a multipart/form-data
     form.multiples = true
-    form.uploadDir = res.locals.dirname + '/uploads'
     form.keepExtensions = true
 
     form.on('error', function (err) {
@@ -23,8 +23,10 @@ module.exports = function (req, res) {
     })
 
     form.on('fileBegin', function (name, file) {
-        if (file.name !== 'data.json') {
-            console.log('File name uploaded must be data.json. Name of file uploaded is: ' + file.name)
+        if (file.name === '') {
+            return
+        } else if (file.name !== 'data.json') {
+            return console.log('File name uploaded must be data.json. Name of file uploaded is: ' + file.name)
         } else {
             file.path = res.locals.dirname + '/uploads/' + file.name
         }
@@ -127,9 +129,9 @@ module.exports = function (req, res) {
                     renderMeds(err, 'execute', counter)
                 })
                 .catch(function (err) {
-                    console.log('--------------- loadJson JsonToObj Err: ---------------')
+                    console.log('--------------- loadJson jsonToObj Err: ---------------')
                     console.log(err)
-                    renderMeds(err, '', 0)
+                    // renderMeds(err, '', 0)
                 })
                 break;
             case 'uploadJson':
@@ -140,12 +142,13 @@ module.exports = function (req, res) {
                 }).then(function (counter) {
                     console.log('--------------- uploadJson saveObjToDb Counter: ---------------')
                     console.log(counter)
+                    deleteUpload()
                     renderMeds(err, 'execute', counter)
                 })
                 .catch(function (err) {
-                    console.log('--------------- uploadJson JsonToObj Err: ---------------')
+                    console.log('--------------- uploadJson jsonToObj Err: ---------------')
                     console.log(err)
-                    renderMeds(err, '', 0)
+                    // renderMeds(err, '', 0)
                 })
                 break;
         }
@@ -233,6 +236,23 @@ module.exports = function (req, res) {
         }).catch(function (err) {
             console.error(err)
             callback(err)
+        })
+    }
+
+    function deleteUpload () {
+        const directory = 'uploads'
+
+        fs.readdir(directory, function (err, files) {
+            if (err) throw err
+
+            files.forEach(function(file) {
+                console.log(path.join(directory, file))  
+
+                fs.unlink(path.join(directory, file), function (err) {
+                    if (err) console.log(err)
+                    console.log(file + ' succesfully removed' )
+                })
+            }, this);
         })
     }
 }

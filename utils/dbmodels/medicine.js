@@ -5,20 +5,22 @@ const ObjectId = Schema.ObjectId
 
 let MedSchema = new Schema({
     name: String,
-    price: String,
+    price: Number,
     href: String,
     image_href: String,
     store: String,
+    date: { type: Date, default: Date.now}
 })
 
 const MedModel = mongoose.model('meds', MedSchema)
 
-function Medicine (name, price, link, category, brand, image, store) {
+function Medicine (name, price, link, category, brand, image, store, date) {
     this.name = name;
     this.price = price;
     this.link = link;
     this.image = image;
     this.store = store;
+    this.date = date;
 }
 
 function find (query, cb) {
