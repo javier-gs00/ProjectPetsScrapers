@@ -9,8 +9,6 @@ search.get('/', function (req, res) {
     let nameFilter = req.query.name
     let storeFilter = req.query.store
     let priceFilter = req.query.price
-
-    console.log(nameFilter == undefined)
  
     // Check contents of query before sending it to the database
     function checkQuery (query, callback) {
@@ -40,20 +38,33 @@ search.get('/', function (req, res) {
     // Check if results exists then renders the view
     function checkResults (results) {
         let errors = []
+        let success = undefined
         
         if (results.length === 0) { 
-            errors = [{ msg : 'No se encontraron resultados' }] 
+            errors = [{ msg : 'No se encontraron resultados' }]
+            success = false
         } else {
-            results: true
+            success = true
             errors = false
         }
 
-        res.render('home', {
-            results: results,
-            errors: errors,
-            query: query,
-            med: results,
-            messsage: 'hello world'
+        modifyRes(results, false)
+        .then(function (modResults) {
+            res.render('home', {
+                success: success,
+                errors: errors,
+                query: query,
+                med: modResults
+            })
+        })
+        .catch(function (err) {
+            console.log(err)
+            res.render('home', {
+                success: success,
+                errors: errors,
+                query: query,
+                med: jsonRes
+            })
         })
     }
 
@@ -67,17 +78,47 @@ search.get('/', function (req, res) {
         return true
     }
 
+    function modifyRes(results, json) {
+        return new Promise (function (resolve, reject) {
+            let modResults = []
+            console.log('------------- RESULTS -------------')
+            console.log(results)
+            results.forEach(function(result) {
+                // transform the price into a string and add a $ and a .
+                let price = result.price.toString()
+                price = "$" + price.slice(0, 1) + "." + price.slice(-3)
+                console.log(price)
+                result.price = price
+    
+                // transform the rest of the parameters to a string for json
+                let name = result.name.toString()
+                let store = result.store.toString()
+    
+                modResults.push({
+                    "name": name,
+                    "price": price,
+                    "store": store
+                })
+            });
+
+            if (json == true) {
+                let jsonRes = JSON.stringify(modResults)
+                resolve(jsonRes)
+            } else {
+                resolve(modResults)
+            } 
+        })
+    }
 
     if (query != '' && nameFilter == undefined && storeFilter == undefined && priceFilter == undefined) {
-    // No filters used
+    // No filters used. First query doesnt have any filters
         checkQuery(query, function () {
-            Meds.find(query, function (err, meds) {
-                console.log('no sorting')            
+            Meds.find(query, function (err, meds) {            
                 checkResults(meds)
             })
         })
     } else if (query != '' || nameFilter != undefined || storeFilter != undefined || priceFilter != undefined) {
-    // Filter used
+    // Filter used. A query with at least one filter different than undefined means that a filter was applied
         checkQuery(query, function () {
             let filter = ''
 
@@ -89,17 +130,22 @@ search.get('/', function (req, res) {
                 filter = priceFilter
             }
 
-            if (filter == '') {
-                Meds.find(query, function (err, meds) {
-                    console.log('no filter')
-                    checkResults(meds)
-                })
-            } else {
-                Meds.sort(query, filter, function (err, meds) {
-                    console.log('filter used')
-                    checkResults(meds)
-                })
-            }
+            // Sorting used
+            Meds.sort(query, filter, function (err, meds) {
+                checkResults(meds)
+            })
+
+            // No sorting used
+            // if (filter == '') {
+            //     Meds.find(query, function (err, meds) {
+            //         checkResults(meds)
+            //     })
+            // } else {
+            //     // Sorting used
+            //     Meds.sort(query, filter, function (err, meds) {
+            //         checkResults(meds)
+            //     })
+            // }
         })
     }
 })
