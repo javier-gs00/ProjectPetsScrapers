@@ -86,10 +86,12 @@ search.get('/', function (req, res) {
             results.forEach(function(result) {
                 // transform the price into a string and add a $ and a .
                 let price = result.price.toString()
-                price = "$" + price.slice(0, 1) + "." + price.slice(-3)
-                console.log(price)
-                result.price = price
-    
+                if (price.length > 4) {
+                    price = "$" + price.slice(0, 2) + "." + price.slice(-3)
+                } else {
+                    price = "$" + price.slice(0, 1) + "." + price.slice(-3)
+                }
+
                 // transform the rest of the parameters to a string for json
                 let name = result.name.toString()
                 let store = result.store.toString()
@@ -99,8 +101,7 @@ search.get('/', function (req, res) {
                     "price": price,
                     "store": store
                 })
-            });
-
+            })
             if (json == true) {
                 let jsonRes = JSON.stringify(modResults)
                 resolve(jsonRes)
