@@ -77,7 +77,7 @@ function dbToJson (path, filename, callback) {
 // Save the scraped data of a particular store
 function save (data, store) {
     return new Promise (function (resolve, reject) {
-        checkData()
+        checkData(data)
         .then(function (data) {
             let counter = 0
             let date = getDate()
@@ -124,7 +124,7 @@ function parseJson (path, filename) {
 
         fs.readFile(location, 'utf8', function (err, data) {
             let obj = JSON.parse(data)
-            resolve(data)
+            resolve(obj)
             reject(err)
         })
     })
@@ -154,11 +154,13 @@ function getDate() {
 }
 
 module.exports = {
-    MedModel,
-    Medicine,
+    dbToJson,
+    deleteMany,
     find,
     findAll,
-    sort,
-    deleteMany,
-    dbToJson
+    Medicine,
+    MedModel,
+    parseJson,
+    save,
+    sort
 }

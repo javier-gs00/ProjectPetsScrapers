@@ -89,7 +89,7 @@ module.exports = function (req, res) {
                 .then(function (data) {
                     endTimer = timer(startTimer)
                     console.log('Day Mascotas meds scraper completed in ' + endTimer + ' ms.')
-                    return saveObjectToDB(data, 'Day Mascotas')
+                    return medicine.save(data, 'Day Mascotas')
                 }).then(function (counter) {
                     return renderMeds(err, 'execute', counter)
                 }).catch(function (err) {
@@ -102,7 +102,7 @@ module.exports = function (req, res) {
                 .then(function (data) {
                     endTimer = timer(startTimer)
                     console.log('Noi meds scraper completed in ' + endTimer + ' ms.')
-                    return saveObjectToDB(data, 'Noi')
+                    return medicine.save(data, 'Noi')
                 }).then(function (counter) {
                     return renderMeds(err, 'execute', counter)
                 }).catch(function (err) {
@@ -120,9 +120,9 @@ module.exports = function (req, res) {
                 })
                 break;
             case 'loadJson':
-                JsonToObject(res.locals.dirname + '/utils/webscrapers/scrapers/scrapers_json_files/', 'scraped_meds.json')
-                .then(function (obj) {
-                    return saveObjectToDB(obj, '')
+                medicine.parseJson(res.locals.dirname + '/utils/webscrapers/scrapers/scrapers_json_files/', 'scraped_meds.json')
+                .then(function (data) {
+                    return medicine.save(data, '')
                 }).then(function (counter) {
                     console.log('--------------- loadJson saveObjToDb Counter: ---------------')
                     console.log(counter)
@@ -131,14 +131,13 @@ module.exports = function (req, res) {
                 .catch(function (err) {
                     console.log('--------------- loadJson jsonToObj Err: ---------------')
                     console.log(err)
-                    // renderMeds(err, '', 0)
+                    renderMeds(err, '', 0)
                 })
                 break;
             case 'uploadJson':
-                JsonToObject(res.locals.dirname + '/uploads/', 'data.json')
-                .then(function (obj) {
-                    // console.log(obj)
-                    return saveObjectToDB(obj, '')
+                medicine.parseJson(res.locals.dirname + '/uploads/', 'data.json')
+                .then(function (data) {
+                    return medicine.save(data, '')
                 }).then(function (counter) {
                     console.log('--------------- uploadJson saveObjToDb Counter: ---------------')
                     console.log(counter)
@@ -148,7 +147,7 @@ module.exports = function (req, res) {
                 .catch(function (err) {
                     console.log('--------------- uploadJson jsonToObj Err: ---------------')
                     console.log(err)
-                    // renderMeds(err, '', 0)
+                    renderMeds(err, '', 0)
                 })
                 break;
         }
@@ -190,7 +189,7 @@ module.exports = function (req, res) {
         let dayMascotasScraper = new Promise (function (resolve, reject) {
             daymascotas.scraper()
             .then(function (data) {
-                return saveObjectToDB(data, 'Day Mascotas')
+                return medicine.save(data, 'Day Mascotas')
             })
             .then(function (counter) {
                 resolve(counter)
@@ -203,7 +202,7 @@ module.exports = function (req, res) {
         let noiScraper = new Promise (function (resolve, reject) {
             noi.scraper()
             .then(function (data) {
-                return saveObjectToDB(data, 'Noi')
+                return medicine.save(data, 'Noi')
             })
             .then(function (counter) {
                 resolve(counter)
