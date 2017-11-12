@@ -23,12 +23,14 @@ function Medicine (name, price, link, category, brand, image, store, date) {
     this.date = date;
 }
 
+// Find medicine by name
 function find (query, cb) {
     MedModel.find({ name: new RegExp(query, 'i')}, function (err, meds) {
         cb(err, meds)
     })
 }
 
+// Retrieve all the documents
 function findAll (cb) {
     MedModel.find().exec(function (err, meds) {
         cb(err, meds)
@@ -70,6 +72,85 @@ function dbToJson (path, filename, callback) {
             callback(err)
         })
     })
+}
+
+// Save the scraped data of a particular store
+function save (data, store) {
+    return new Promise (function (resolve, reject) {
+        checkData()
+        .then(function (data) {
+            let counter = 0
+            let date = getDate()
+    
+            data.forEach(function(med) {
+                let storeName = (med.store)? med.store : store
+                
+                //Transform price in string to number
+                if (typeof med.price === "string") {
+                    med.price = med.price.replace(/\$/g, '')
+                    med.price = med.price.replace(/\,/g, '')
+                    med.price = med.price.replace(/\./g, '')
+                    parseInt(med.price)
+                }
+    
+                let medDocument = new MedModel ({
+                    name: med.name,
+                    price: med.price,
+                    href: med.link,
+                    image_href: med.image,
+                    store: storeName,
+                    date: date
+                })
+    
+                medDocument.save(function (err, medDocument) {
+                    if (err) reject(err)
+                })
+    
+                counter += 1
+            })
+    
+            resolve(counter)
+        })
+        .catch(function (err) {
+            reject(err)
+        })
+    })
+}
+
+// Transform data from a JSON file to a JS Object
+function parseJson (path, filename) {
+    return new Promise (function (resolve, reject) {
+        let location = path + filename
+
+        fs.readFile(location, 'utf8', function (err, data) {
+            let obj = JSON.parse(data)
+            resolve(data)
+            reject(err)
+        })
+    })
+}
+
+// Check that the scraped data contains vaules for name, price and href
+function checkData (data) {
+    return new Promise(function (resolve, reject) {
+        let err = null
+
+        data.forEach(function (med) {
+            if (med.name === '' || med.price === '' || med.link === '') {
+                err = 'Incomplete scraped data'
+                reject(err)
+            }
+        })
+        resolve(data)
+    })
+}
+
+function getDate() {
+    let date = new Date()
+
+    // Get the day as a string in format: YYYY/MM/DD
+    let today = date.getFullYear() + '/' + (date.getMonth() + 1 ) + '/' + date.getDate()
+    return today 
 }
 
 module.exports = {

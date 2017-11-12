@@ -187,15 +187,6 @@ module.exports = function (req, res) {
 
     // Run all the scrapers with their promisified functions
     function execAll (callback) {
-        // let dayMascotasScraper = new Promise (function (resolve, reject) {
-        //     daymascotas.scraper().then(function (data) {
-        //         saveObjectToDB(data, 'Medicine', 'Brand', 'Day Mascotas', function (err, counter) {
-        //             resolve(counter)
-        //             reject(err)
-        //         })
-        //     })
-        // })
-
         let dayMascotasScraper = new Promise (function (resolve, reject) {
             daymascotas.scraper()
             .then(function (data) {
