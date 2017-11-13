@@ -47,7 +47,11 @@ function sort (query, sort, callback) {
 
 // Delete documents from the database
 function deleteMany (category, criteria, callback) {
-    if (category === 'name') {
+    if (category === '') {
+        MedModel.deleteMany({}, function (err, res) {
+            callback(err, res)
+        })
+    } else if (category === 'name') {
         MedModel.deleteMany({ name: criteria}, function (err, DeleteWriteOpResultObject) {
             callback(err, DeleteWriteOpResultObject)
         })

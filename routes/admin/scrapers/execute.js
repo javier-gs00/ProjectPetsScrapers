@@ -45,18 +45,18 @@ module.exports = function (req, res) {
 
         switch (deleteMeds) {
             case 'all':
-                medicine.deleteMany('store', '', function (err, DeleteWriteOpResultObject) {
-                    renderMeds(err, 'delete', DeleteWriteOpResultObject.deletedCount)
+                medicine.deleteMany('', '', function (err, result) {
+                    renderMeds(err, 'delete', result.deletedCount)
                 })
                 break;
             case "daymascotas":      
-                medicine.deleteMany('store', 'Day Mascotas', function (err, DeleteWriteOpResultObject) {
-                    renderMeds(err, 'delete', DeleteWriteOpResultObject.deletedCount)
+                medicine.deleteMany('store', 'Day Mascotas', function (err, result) {
+                    renderMeds(err, 'delete', result.deletedCount)
                 })
                 break;
             case "noi":
-                medicine.deleteMany('store', 'Noi', function (err, DeleteWriteOpResultObject) {
-                    renderMeds(err, 'delete', DeleteWriteOpResultObject.deletedCount)
+                medicine.deleteMany('store', 'Noi', function (err, result) {
+                    renderMeds(err, 'delete', result.deletedCount)
                 })
                 break;
         }
