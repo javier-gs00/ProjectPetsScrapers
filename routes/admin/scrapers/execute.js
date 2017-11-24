@@ -45,18 +45,30 @@ module.exports = function (req, res) {
 
         switch (deleteMeds) {
             case 'all':
-                medicine.deleteMany('', '', function (err, result) {
+                medicine.deleteMany('', '')
+                .then(function (result) {
                     renderMeds(err, 'delete', result.deletedCount)
                 })
+                .catch(function (err) {
+                    renderMeds(err, 'delete', 0)
+                })
                 break;
-            case "daymascotas":      
-                medicine.deleteMany('store', 'Day Mascotas', function (err, result) {
+            case "daymascotas":
+                medicine.deleteMany('store', 'Day Mascotas')
+                .then(function (result) {
                     renderMeds(err, 'delete', result.deletedCount)
+                })
+                .catch(function (err) {
+                    renderMeds(err, 'delete', 0)
                 })
                 break;
             case "noi":
-                medicine.deleteMany('store', 'Noi', function (err, result) {
+                medicine.deleteMany('store', 'Noi')
+                .then(function (result) {
                     renderMeds(err, 'delete', result.deletedCount)
+                })
+                .catch(function (err) {
+                    renderMeds(err, 'delete', 0)
                 })
                 break;
         }
@@ -66,14 +78,18 @@ module.exports = function (req, res) {
                 medicine.findAll(function (err, meds) {
                     // If there are documents on the db first erase them and then execute the scraper
                     if (meds.length !== 0) {
-                        medicine.deleteMany('store', '', function (err, DeleteWriteOpResultObject) {
-                            console.log('Deleted ' + DeleteWriteOpResultObject.deletedCount + ' documents from the meds colleciton...')
+                        medicine.deleteMany('', '')
+                        .then(function (result) {
+                            console.log('Deleted ' + result.deletedCount + ' documents from the meds colleciton...')
                             startTimer = timer()
                             execAll(function (err, docCounter) {
                                 endTimer = timer(startTimer)
                                 console.log('All meds scrapers completed in ' + endTimer + ' ms.')
                                 renderMeds(err, 'execute', docCounter)
-                            })  
+                            })
+                        })
+                        .catch(function (err) {
+                            renderMeds(err, 'execute', 0)
                         })
                     } else {
                     // If there are none documents just execute the scraper
@@ -217,13 +233,15 @@ module.exports = function (req, res) {
             noiScraper
         ]
 
-        Promise.all(resolvedPromisesArray).then(function (values) {
+        Promise.all(resolvedPromisesArray)
+        .then(function (values) {
             let total = 0
             for (let i = 0; i < values.length; i++) {
                 total += values[i]
             }
             callback(null, total)
-        }).catch(function (err) {
+        })
+        .catch(function (err) {
             console.error(err)
             callback(err)
         })

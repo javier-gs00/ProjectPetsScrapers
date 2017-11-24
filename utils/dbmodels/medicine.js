@@ -46,22 +46,29 @@ function sort (query, sort, callback) {
 }
 
 // Delete documents from the database
-function deleteMany (category, criteria, callback) {
-    if (category === '') {
-        MedModel.deleteMany({}, function (err, res) {
-            callback(err, res)
-        })
-    } else if (category === 'name') {
-        MedModel.deleteMany({ name: criteria}, function (err, DeleteWriteOpResultObject) {
-            callback(err, DeleteWriteOpResultObject)
-        })
-    } else if (category === 'store') {
-        MedModel.deleteMany({ store: criteria}, function (err, DeleteWriteOpResultObject) {
-            callback(err, DeleteWriteOpResultObject)
-        })
-    } else {
-        console.log('Delete Err')
-    }
+function deleteMany (category, criteria) {
+    return new Promise (function (resolve, reject) {
+        console.log("Criteria is: " + category)
+        console.log("Criteria is: " + criteria)   
+        if (category === '') {
+            MedModel.deleteMany({}, function (err, res) {
+                resolve(res)
+                reject(err)
+            })
+        } else if (category === 'name') {
+            MedModel.deleteMany({ name: criteria}, function (err, DeleteWriteOpResultObject) {
+                resolve(DeleteWriteOpResultObject)
+                reject(err)
+            })
+        } else if (category === 'store') {
+            MedModel.deleteMany({ store: criteria}, function (err, res) {
+                resolve(res)
+                reject(err)
+            })
+        } else {
+            reject({err: 'deleteMany function error'})
+        }
+    })
 }
 
 // Export all scraped med data from the DB to a JSON file
