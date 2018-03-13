@@ -1,5 +1,5 @@
 const search = require('express').Router()
-const Meds = require('../../utils/dbmodels/medicine.js')
+const Products = require('../../utils/dbmodels/products')
 const check = require('../../utils/validation/validation.js').check
 
 // (READ) Search form route and return data
@@ -49,12 +49,12 @@ search.get('/', function (req, res) {
         }
 
         modifyRes(results, false)
-        .then(function (modResults) {
+        .then(function (medResults) {
             res.render('home', {
                 success: success,
                 errors: errors,
                 query: query,
-                med: modResults
+                med: medResults
             })
         })
         .catch(function (err) {
@@ -114,7 +114,7 @@ search.get('/', function (req, res) {
     if (query != '' && nameFilter == undefined && storeFilter == undefined && priceFilter == undefined) {
     // No filters used. First query doesnt have any filters
         checkQuery(query, function () {
-            Meds.find(query, function (err, meds) {            
+            Products.find(query, function (err, meds) {            
                 checkResults(meds)
             })
         })
@@ -132,7 +132,7 @@ search.get('/', function (req, res) {
             }
 
             // Sorting used
-            Meds.sort(query, filter, function (err, meds) {
+            Products.sort(query, filter, function (err, meds) {
                 checkResults(meds)
             })
 
